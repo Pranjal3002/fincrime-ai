@@ -1,0 +1,74 @@
+[
+  {
+    "file": "01_executive_dashboard.png",
+    "source": "Streamlit / Executive Overview",
+    "kind": "actual browser screenshot",
+    "sha256": "0504b4d4d2db41fb870a31ed4dcd2225d97bc6e42a705be17abcfd482302de55"
+  },
+  {
+    "file": "02_screening_dashboard.png",
+    "source": "Streamlit / Screening Analytics",
+    "kind": "actual browser screenshot",
+    "sha256": "da27521a88bcaf5931f01254420769662f75c60385df7bf91979fb6cfb9b9140"
+  },
+  {
+    "file": "03_geographic_risk.png",
+    "source": "Streamlit / Payment Risk",
+    "kind": "actual browser screenshot",
+    "sha256": "f79d86a8f48fde7dadf8d8956a9fd1ad56f1f9d19225a9ba82dd5a61359e995c"
+  },
+  {
+    "file": "04_model_performance.png",
+    "source": "Streamlit / Model Performance",
+    "kind": "actual browser screenshot",
+    "sha256": "9fb6af4b516660556adfecc0d0f19d84702df3a7558f949fc29795d147fdb2f0"
+  },
+  {
+    "file": "07_statistical_analysis.png",
+    "source": "Streamlit / Statistical Analysis",
+    "kind": "actual browser screenshot",
+    "sha256": "507d651d32a30665bccba1dabc9668488237bfc1a89891ffacdf250f493f0a8d"
+  },
+  {
+    "file": "08_alert_investigation.png",
+    "source": "Streamlit / Investigation Explorer",
+    "kind": "actual browser screenshot",
+    "sha256": "680e585c4581faa40410b4ae763f028e7083b2b38cc104e58c7e37e35d6fd2d6"
+  },
+  {
+    "file": "09_fastapi_docs.png",
+    "source": "FastAPI live /docs",
+    "kind": "actual browser screenshot",
+    "sha256": "fa4129e3c66456da6a0e797be372282f5f1022bbd3187b00142fc27415eac303"
+  },
+  {
+    "file": "10_tests_passed.png",
+    "source": "reports/pytest_output.txt",
+    "kind": "rendered actual command transcript",
+    "sha256": "cd9a6c6c041cc995af5b6e38f55eab8737611b1039aaec9ca206267d9ce41863"
+  },
+  {
+    "file": "11_pipeline_run.png",
+    "source": "reports/pipeline_output.txt",
+    "kind": "rendered actual command transcript",
+    "sha256": "465fbbcfe46fda2b1864281afa8d51b6ebdbdcd33469de4a8124933ae5b3ab07"
+  },
+  {
+    "file": "12_warehouse_schema.png",
+    "source": "duckdb_constraints() and SHOW TABLES",
+    "kind": "rendered live warehouse introspection",
+    "sha256": "2c6e086e89713e8680313f96b13d329e3b252988b6196b6b82fe100ec2d5c3c7"
+  },
+  {
+    "file": "05_confusion_matrix.png",
+    "source": "fincrime_ai.reporting; measured model output",
+    "kind": "generated analytical plot, not a UI screenshot",
+    "sha256": "6f9efbc48568a5194e63a2b3027e441e7f6daa08c38cb69202bc3e49456ddccc"
+  },
+  {
+    "file": "06_feature_importance.png",
+    "source": "fincrime_ai.reporting; measured model output",
+    "kind": "generated analytical plot, not a UI screenshot",
+    "sha256": "18db81193ed9f1f104e45abc7c8ef00f043903faa3a9089727a0885133200199"
+  }
+]

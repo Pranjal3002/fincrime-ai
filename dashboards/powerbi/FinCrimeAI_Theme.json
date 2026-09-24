@@ -1,0 +1,28 @@
+{
+  "name": "FinCrimeAI Enterprise",
+  "dataColors": [
+    "#087E8B",
+    "#214D72",
+    "#5C9EAD",
+    "#DCA64C",
+    "#64748B",
+    "#9BC4CB"
+  ],
+  "background": "#F3F6FA",
+  "foreground": "#102A43",
+  "tableAccent": "#087E8B",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI",
+      "color": "#102A43"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "color": "#334E68"
+    },
+    "callout": {
+      "fontFace": "Segoe UI",
+      "color": "#087E8B"
+    }
+  }
+}

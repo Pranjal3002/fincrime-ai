@@ -1,0 +1,14 @@
+{
+  "engine": "pyspark",
+  "writer": "arrow",
+  "rows": 100000,
+  "seconds": 18.23168810000061,
+  "pyspark_version": "3.5.5",
+  "local_master": "local[2]",
+  "id_parity": true,
+  "row_count_parity": true,
+  "amount_parity": true,
+  "log_amount_parity": true,
+  "date_parity": true,
+  "native_hadoop_export": "Attempted and failed: Windows winutils/HADOOP_HOME unavailable. Arrow writer used for local export; transformations executed in Spark."
+}

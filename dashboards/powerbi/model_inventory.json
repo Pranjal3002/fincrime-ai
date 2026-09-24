@@ -1,0 +1,271 @@
+{
+  "tables": [
+    {
+      "name": "bridge_alert_rules",
+      "columns": 2
+    },
+    {
+      "name": "confusion_matrix",
+      "columns": 5
+    },
+    {
+      "name": "dim_counterparty",
+      "columns": 16
+    },
+    {
+      "name": "dim_customer",
+      "columns": 14
+    },
+    {
+      "name": "dim_date",
+      "columns": 5
+    },
+    {
+      "name": "dim_destination_geography",
+      "columns": 3
+    },
+    {
+      "name": "dim_origin_geography",
+      "columns": 3
+    },
+    {
+      "name": "dim_payment_channel",
+      "columns": 2
+    },
+    {
+      "name": "dim_risk_category",
+      "columns": 2
+    },
+    {
+      "name": "fact_screening_alerts",
+      "columns": 23
+    },
+    {
+      "name": "fact_transactions",
+      "columns": 33
+    },
+    {
+      "name": "feature_importance",
+      "columns": 2
+    },
+    {
+      "name": "model_comparison",
+      "columns": 17
+    },
+    {
+      "name": "statistical_findings",
+      "columns": 11
+    },
+    {
+      "name": "threshold_analysis",
+      "columns": 14
+    }
+  ],
+  "relationships": [
+    {
+      "name": "fact_transactions_customer_key",
+      "fromTable": "fact_transactions",
+      "fromColumn": "customer_key",
+      "fromCardinality": "many",
+      "toTable": "dim_customer",
+      "toColumn": "customer_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_transactions_counterparty_key",
+      "fromTable": "fact_transactions",
+      "fromColumn": "counterparty_key",
+      "fromCardinality": "many",
+      "toTable": "dim_counterparty",
+      "toColumn": "counterparty_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_transactions_date_key",
+      "fromTable": "fact_transactions",
+      "fromColumn": "date_key",
+      "fromCardinality": "many",
+      "toTable": "dim_date",
+      "toColumn": "date_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_transactions_origin_geography_key",
+      "fromTable": "fact_transactions",
+      "fromColumn": "origin_geography_key",
+      "fromCardinality": "many",
+      "toTable": "dim_origin_geography",
+      "toColumn": "geography_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_transactions_destination_geography_key",
+      "fromTable": "fact_transactions",
+      "fromColumn": "destination_geography_key",
+      "fromCardinality": "many",
+      "toTable": "dim_destination_geography",
+      "toColumn": "geography_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_transactions_channel_key",
+      "fromTable": "fact_transactions",
+      "fromColumn": "channel_key",
+      "fromCardinality": "many",
+      "toTable": "dim_payment_channel",
+      "toColumn": "channel_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_transactions_risk_key",
+      "fromTable": "fact_transactions",
+      "fromColumn": "risk_key",
+      "fromCardinality": "many",
+      "toTable": "dim_risk_category",
+      "toColumn": "risk_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_screening_alerts_customer_key",
+      "fromTable": "fact_screening_alerts",
+      "fromColumn": "customer_key",
+      "fromCardinality": "many",
+      "toTable": "dim_customer",
+      "toColumn": "customer_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_screening_alerts_counterparty_key",
+      "fromTable": "fact_screening_alerts",
+      "fromColumn": "counterparty_key",
+      "fromCardinality": "many",
+      "toTable": "dim_counterparty",
+      "toColumn": "counterparty_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_screening_alerts_date_key",
+      "fromTable": "fact_screening_alerts",
+      "fromColumn": "date_key",
+      "fromCardinality": "many",
+      "toTable": "dim_date",
+      "toColumn": "date_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_screening_alerts_origin_geography_key",
+      "fromTable": "fact_screening_alerts",
+      "fromColumn": "origin_geography_key",
+      "fromCardinality": "many",
+      "toTable": "dim_origin_geography",
+      "toColumn": "geography_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_screening_alerts_destination_geography_key",
+      "fromTable": "fact_screening_alerts",
+      "fromColumn": "destination_geography_key",
+      "fromCardinality": "many",
+      "toTable": "dim_destination_geography",
+      "toColumn": "geography_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_screening_alerts_channel_key",
+      "fromTable": "fact_screening_alerts",
+      "fromColumn": "channel_key",
+      "fromCardinality": "many",
+      "toTable": "dim_payment_channel",
+      "toColumn": "channel_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "fact_screening_alerts_risk_key",
+      "fromTable": "fact_screening_alerts",
+      "fromColumn": "risk_key",
+      "fromCardinality": "many",
+      "toTable": "dim_risk_category",
+      "toColumn": "risk_key",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "alert_rules",
+      "fromTable": "bridge_alert_rules",
+      "fromColumn": "alert_id",
+      "fromCardinality": "many",
+      "toTable": "fact_screening_alerts",
+      "toColumn": "alert_id",
+      "toCardinality": "one",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    }
+  ],
+  "measure_names": [
+    "Transactions Screened",
+    "Review Alerts",
+    "Alert Rate",
+    "High-Risk Alerts",
+    "Average Risk Score",
+    "Total Amount GBP",
+    "Average Amount GBP",
+    "Average Velocity",
+    "Velocity Spike Payments",
+    "Unusual-Time Payments",
+    "Screening Alerts",
+    "Screening TP",
+    "Screening FP",
+    "Screening FN",
+    "Screening TN",
+    "Screening Precision",
+    "Screening Recall",
+    "Screening F1",
+    "Screening FPR",
+    "Screening FNR",
+    "Open Alerts",
+    "In Review Alerts",
+    "Escalated Alerts",
+    "Closed Alerts",
+    "Reviewed False Positives",
+    "Reviewed FP Share",
+    "Average Case Age at Cutoff",
+    "Rule Alerts",
+    "XGBoost Threshold",
+    "Test TP",
+    "Test FP",
+    "Test FN",
+    "Test TN",
+    "Cramers V",
+    "Rank Biserial",
+    "Spearman Rho",
+    "Wilson Lower",
+    "Wilson Upper"
+  ]
+}

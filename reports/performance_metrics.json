@@ -1,0 +1,11 @@
+{
+  "records_processed": 100000,
+  "generation_seconds": 0.5378567999996449,
+  "transformation_seconds": 3.965246400000069,
+  "screening_unique_entities": 600,
+  "screening_seconds": 0.042292600000109815,
+  "model_scoring_seconds": 0.23555430000033084,
+  "total_seconds": 36.55414610000025,
+  "screening_timing_scope": "Unique counterparty matching; excludes join and IO; cache reuse across payments",
+  "total_timing_scope": "Through warehouse and metric export; excludes subsequent analytical plot and executive report rendering"
+}

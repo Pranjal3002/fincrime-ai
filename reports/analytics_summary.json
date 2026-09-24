@@ -1,0 +1,7 @@
+{
+  "transactions_screened": 100000.0,
+  "alerts": 21998.0,
+  "alert_rate": 0.21998,
+  "average_risk_score": 18.27335,
+  "high_risk_alerts": 6470.0
+}

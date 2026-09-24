@@ -1,0 +1,1936 @@
+{
+  "name": "FinCrimeAI_Financial_Crime_Analytics",
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "en-GB",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-GB",
+    "expressions": [
+      {
+        "name": "DataFolder",
+        "kind": "m",
+        "expression": "\"C:\\FinCrimeAIData\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+      }
+    ],
+    "tables": [
+      {
+        "name": "bridge_alert_rules",
+        "columns": [
+          {
+            "name": "alert_id",
+            "dataType": "string",
+            "sourceColumn": "alert_id",
+            "summarizeBy": "none",
+            "lineageTag": "de36b5c8-39ca-5395-9fe3-dc58aecba72e"
+          },
+          {
+            "name": "rule_name",
+            "dataType": "string",
+            "sourceColumn": "rule_name",
+            "summarizeBy": "none",
+            "lineageTag": "a26e927f-5e78-51d4-95eb-c92a02dc8f56"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "bridge_alert_rules",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\bridge_alert_rules.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"alert_id\", type text}, {\"rule_name\", type text}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "1cd9edf0-869e-54d8-8ab8-e6710d0b8417"
+      },
+      {
+        "name": "confusion_matrix",
+        "columns": [
+          {
+            "name": "model",
+            "dataType": "string",
+            "sourceColumn": "model",
+            "summarizeBy": "none",
+            "lineageTag": "46d5f405-97dd-5209-8065-dcd58511a99f"
+          },
+          {
+            "name": "actual",
+            "dataType": "string",
+            "sourceColumn": "actual",
+            "summarizeBy": "none",
+            "lineageTag": "aaf2b82b-ce83-513b-a9e4-2d45b606fa93"
+          },
+          {
+            "name": "predicted",
+            "dataType": "string",
+            "sourceColumn": "predicted",
+            "summarizeBy": "none",
+            "lineageTag": "5271e8f3-3d7e-57a8-ae21-80f906323746"
+          },
+          {
+            "name": "cell",
+            "dataType": "string",
+            "sourceColumn": "cell",
+            "summarizeBy": "none",
+            "lineageTag": "b58e40e1-756a-549f-991c-c44819c4a486"
+          },
+          {
+            "name": "count",
+            "dataType": "int64",
+            "sourceColumn": "count",
+            "summarizeBy": "none",
+            "lineageTag": "f85f8ee6-b563-5076-9e99-ad507f8934b0"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "confusion_matrix",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\confusion_matrix.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"model\", type text}, {\"actual\", type text}, {\"predicted\", type text}, {\"cell\", type text}, {\"count\", Int64.Type}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "095afe91-17ab-55fd-af6b-c1f8766cb57f"
+      },
+      {
+        "name": "dim_counterparty",
+        "columns": [
+          {
+            "name": "counterparty_key",
+            "dataType": "int64",
+            "sourceColumn": "counterparty_key",
+            "summarizeBy": "none",
+            "lineageTag": "fac7f672-4972-5127-8fcd-f2c5f89d20a5",
+            "isHidden": true
+          },
+          {
+            "name": "counterparty_id",
+            "dataType": "int64",
+            "sourceColumn": "counterparty_id",
+            "summarizeBy": "none",
+            "lineageTag": "08458806-d322-5129-993c-12b6f9ed7daf"
+          },
+          {
+            "name": "counterparty_name",
+            "dataType": "string",
+            "sourceColumn": "counterparty_name",
+            "summarizeBy": "none",
+            "lineageTag": "bc110abf-f3d8-5fa9-ab77-68b9aad11e4a"
+          },
+          {
+            "name": "country",
+            "dataType": "string",
+            "sourceColumn": "country",
+            "summarizeBy": "none",
+            "lineageTag": "626afd14-623e-5356-b69c-c9e37e2e9569"
+          },
+          {
+            "name": "counterparty_type",
+            "dataType": "string",
+            "sourceColumn": "counterparty_type",
+            "summarizeBy": "none",
+            "lineageTag": "8f7e02f3-fc53-59d6-a66d-93e48bb3f4ef"
+          },
+          {
+            "name": "baseline_risk",
+            "dataType": "string",
+            "sourceColumn": "baseline_risk",
+            "summarizeBy": "none",
+            "lineageTag": "e0fc5ede-ea44-5e1c-b6e4-440cea416bb7"
+          },
+          {
+            "name": "matched_entity",
+            "dataType": "string",
+            "sourceColumn": "matched_entity",
+            "summarizeBy": "none",
+            "lineageTag": "5644361f-2048-55a2-9618-99cf63fec7fb"
+          },
+          {
+            "name": "matched_entity_id",
+            "dataType": "int64",
+            "sourceColumn": "matched_entity_id",
+            "summarizeBy": "none",
+            "lineageTag": "166c0eae-f0fe-50b8-b0fe-5b414a876224"
+          },
+          {
+            "name": "name_similarity_score",
+            "dataType": "double",
+            "sourceColumn": "name_similarity_score",
+            "summarizeBy": "none",
+            "lineageTag": "5881edaa-0cc6-5af7-b4df-27fa4679c00b",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "alias_match",
+            "dataType": "boolean",
+            "sourceColumn": "alias_match",
+            "summarizeBy": "none",
+            "lineageTag": "d24c9aa5-9b26-5120-9f92-f5b741e73ff1"
+          },
+          {
+            "name": "country_match",
+            "dataType": "boolean",
+            "sourceColumn": "country_match",
+            "summarizeBy": "none",
+            "lineageTag": "e86a573d-ecad-558c-8dfb-d0d5a8b41ccb"
+          },
+          {
+            "name": "screening_score",
+            "dataType": "double",
+            "sourceColumn": "screening_score",
+            "summarizeBy": "none",
+            "lineageTag": "0c045a47-c321-5d9d-90fc-eee23a644f5d",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "screening_threshold",
+            "dataType": "int64",
+            "sourceColumn": "screening_threshold",
+            "summarizeBy": "none",
+            "lineageTag": "a927c6fe-a09b-507d-b7ba-1707974d7894"
+          },
+          {
+            "name": "recommendation",
+            "dataType": "string",
+            "sourceColumn": "recommendation",
+            "summarizeBy": "none",
+            "lineageTag": "d54a4d6d-9a36-53f6-8ced-52efb2d95d3d"
+          },
+          {
+            "name": "reason_codes",
+            "dataType": "string",
+            "sourceColumn": "reason_codes",
+            "summarizeBy": "none",
+            "lineageTag": "5b1c86d1-7942-55d8-8cda-bbacd69a7423"
+          },
+          {
+            "name": "match_method",
+            "dataType": "string",
+            "sourceColumn": "match_method",
+            "summarizeBy": "none",
+            "lineageTag": "49ce7476-214a-5b33-ae6a-e1b831c253d4"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_counterparty",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\dim_counterparty.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"counterparty_key\", Int64.Type}, {\"counterparty_id\", Int64.Type}, {\"counterparty_name\", type text}, {\"country\", type text}, {\"counterparty_type\", type text}, {\"baseline_risk\", type text}, {\"matched_entity\", type text}, {\"matched_entity_id\", Int64.Type}, {\"name_similarity_score\", type number}, {\"alias_match\", type logical}, {\"country_match\", type logical}, {\"screening_score\", type number}, {\"screening_threshold\", Int64.Type}, {\"recommendation\", type text}, {\"reason_codes\", type text}, {\"match_method\", type text}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "213dad4c-a22f-518d-9598-022105c08868"
+      },
+      {
+        "name": "dim_customer",
+        "columns": [
+          {
+            "name": "customer_key",
+            "dataType": "int64",
+            "sourceColumn": "customer_key",
+            "summarizeBy": "none",
+            "lineageTag": "a4e35458-ca79-524e-8ab2-e4c4045ef961",
+            "isHidden": true
+          },
+          {
+            "name": "customer_id",
+            "dataType": "int64",
+            "sourceColumn": "customer_id",
+            "summarizeBy": "none",
+            "lineageTag": "1cff0ec2-94a1-5611-8fcf-ef5961aceb92"
+          },
+          {
+            "name": "account_id",
+            "dataType": "string",
+            "sourceColumn": "account_id",
+            "summarizeBy": "none",
+            "lineageTag": "7ff58e04-8aab-5961-8e5c-bc6a113252da"
+          },
+          {
+            "name": "customer_type",
+            "dataType": "string",
+            "sourceColumn": "customer_type",
+            "summarizeBy": "none",
+            "lineageTag": "d1c70cf8-5c1c-5006-8152-0830faad357d"
+          },
+          {
+            "name": "residence_country",
+            "dataType": "string",
+            "sourceColumn": "residence_country",
+            "summarizeBy": "none",
+            "lineageTag": "310866c0-bf64-5df2-9cfe-8b7359a5bd14"
+          },
+          {
+            "name": "account_age_days",
+            "dataType": "int64",
+            "sourceColumn": "account_age_days",
+            "summarizeBy": "none",
+            "lineageTag": "0fabade5-561d-5b37-bd39-4943d937aac9"
+          },
+          {
+            "name": "industry",
+            "dataType": "string",
+            "sourceColumn": "industry",
+            "summarizeBy": "none",
+            "lineageTag": "bf6477c2-0abb-5bbe-89a8-21c255cc0e62"
+          },
+          {
+            "name": "risk_segment",
+            "dataType": "string",
+            "sourceColumn": "risk_segment",
+            "summarizeBy": "none",
+            "lineageTag": "6f04c659-7828-598b-9adb-8f2188d730e0"
+          },
+          {
+            "name": "kyc_status",
+            "dataType": "string",
+            "sourceColumn": "kyc_status",
+            "summarizeBy": "none",
+            "lineageTag": "16f85cd2-a425-5648-9edd-3f6cedc8d084"
+          },
+          {
+            "name": "pep_flag",
+            "dataType": "boolean",
+            "sourceColumn": "pep_flag",
+            "summarizeBy": "none",
+            "lineageTag": "d6ed5015-6bf8-512a-b315-489492e187b7"
+          },
+          {
+            "name": "expected_monthly_volume",
+            "dataType": "int64",
+            "sourceColumn": "expected_monthly_volume",
+            "summarizeBy": "none",
+            "lineageTag": "b07aee31-3433-5ac4-8738-0610c1cf34d6"
+          },
+          {
+            "name": "expected_amount",
+            "dataType": "double",
+            "sourceColumn": "expected_amount",
+            "summarizeBy": "none",
+            "lineageTag": "7eac8052-c154-507c-94a2-b34c8040202e",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "expected_min",
+            "dataType": "double",
+            "sourceColumn": "expected_min",
+            "summarizeBy": "none",
+            "lineageTag": "99541efd-e389-5c7c-b2c0-13f8b90d7120",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "expected_max",
+            "dataType": "double",
+            "sourceColumn": "expected_max",
+            "summarizeBy": "none",
+            "lineageTag": "363836cf-c3ec-5c80-862b-8e315087dde7",
+            "formatString": "#,0.00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_customer",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\dim_customer.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"customer_key\", Int64.Type}, {\"customer_id\", Int64.Type}, {\"account_id\", type text}, {\"customer_type\", type text}, {\"residence_country\", type text}, {\"account_age_days\", Int64.Type}, {\"industry\", type text}, {\"risk_segment\", type text}, {\"kyc_status\", type text}, {\"pep_flag\", type logical}, {\"expected_monthly_volume\", Int64.Type}, {\"expected_amount\", type number}, {\"expected_min\", type number}, {\"expected_max\", type number}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "38dee404-286e-52a2-8cf1-417bec67e073"
+      },
+      {
+        "name": "dim_date",
+        "columns": [
+          {
+            "name": "date_key",
+            "dataType": "int64",
+            "sourceColumn": "date_key",
+            "summarizeBy": "none",
+            "lineageTag": "b8e3e891-b505-5731-ae44-f6a436fbf4c2",
+            "isHidden": true
+          },
+          {
+            "name": "calendar_date",
+            "dataType": "dateTime",
+            "sourceColumn": "calendar_date",
+            "summarizeBy": "none",
+            "lineageTag": "2d1150a7-db8b-5a47-b3e5-7797b9e2a23a",
+            "formatString": "dd MMM yyyy",
+            "isKey": true
+          },
+          {
+            "name": "year",
+            "dataType": "int64",
+            "sourceColumn": "year",
+            "summarizeBy": "none",
+            "lineageTag": "73a7c4fa-ca1b-5b64-8fcc-6e925327d52c"
+          },
+          {
+            "name": "month",
+            "dataType": "int64",
+            "sourceColumn": "month",
+            "summarizeBy": "none",
+            "lineageTag": "063c5bbb-0c95-57c6-a0b0-aed6e20e5819"
+          },
+          {
+            "name": "day",
+            "dataType": "int64",
+            "sourceColumn": "day",
+            "summarizeBy": "none",
+            "lineageTag": "2cfaae18-3c77-53dc-8411-d76926998775"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_date",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\dim_date.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"date_key\", Int64.Type}, {\"calendar_date\", type datetime}, {\"year\", Int64.Type}, {\"month\", Int64.Type}, {\"day\", Int64.Type}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "4ae48d52-682a-5673-b3c3-188aee81bba6",
+        "dataCategory": "Time"
+      },
+      {
+        "name": "dim_destination_geography",
+        "columns": [
+          {
+            "name": "geography_key",
+            "dataType": "int64",
+            "sourceColumn": "geography_key",
+            "summarizeBy": "none",
+            "lineageTag": "be21a2d6-b355-58ea-a128-1649b8966c97",
+            "isHidden": true
+          },
+          {
+            "name": "country_code",
+            "dataType": "string",
+            "sourceColumn": "country_code",
+            "summarizeBy": "none",
+            "lineageTag": "5f89a167-626f-5a92-90a3-331fd0240da7"
+          },
+          {
+            "name": "fictional_high_risk",
+            "dataType": "boolean",
+            "sourceColumn": "fictional_high_risk",
+            "summarizeBy": "none",
+            "lineageTag": "49a9647f-cf23-5725-8205-fe5a9520165a"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_destination_geography",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\dim_destination_geography.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"geography_key\", Int64.Type}, {\"country_code\", type text}, {\"fictional_high_risk\", type logical}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "7f8965b2-3ba4-5629-a0cc-83ea28de560e"
+      },
+      {
+        "name": "dim_origin_geography",
+        "columns": [
+          {
+            "name": "geography_key",
+            "dataType": "int64",
+            "sourceColumn": "geography_key",
+            "summarizeBy": "none",
+            "lineageTag": "8d9d991d-f37f-58a1-b806-6563cedfb0f3",
+            "isHidden": true
+          },
+          {
+            "name": "country_code",
+            "dataType": "string",
+            "sourceColumn": "country_code",
+            "summarizeBy": "none",
+            "lineageTag": "91a9806e-f9b5-5329-b3ed-093a377ab7e7"
+          },
+          {
+            "name": "fictional_high_risk",
+            "dataType": "boolean",
+            "sourceColumn": "fictional_high_risk",
+            "summarizeBy": "none",
+            "lineageTag": "52962932-8460-5a68-9a05-88600d8bc96d"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_origin_geography",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\dim_origin_geography.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"geography_key\", Int64.Type}, {\"country_code\", type text}, {\"fictional_high_risk\", type logical}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "b99e9122-59e2-557c-ad48-9cdbe44c2a81"
+      },
+      {
+        "name": "dim_payment_channel",
+        "columns": [
+          {
+            "name": "channel_key",
+            "dataType": "int64",
+            "sourceColumn": "channel_key",
+            "summarizeBy": "none",
+            "lineageTag": "a948bfd4-513f-59a3-bfb8-180439bb3b73",
+            "isHidden": true
+          },
+          {
+            "name": "payment_channel",
+            "dataType": "string",
+            "sourceColumn": "payment_channel",
+            "summarizeBy": "none",
+            "lineageTag": "b94948a3-5051-51e4-bf00-793e60a5a9bb"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_payment_channel",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\dim_payment_channel.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"channel_key\", Int64.Type}, {\"payment_channel\", type text}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "c950704a-39b7-59ea-b1d6-65f19b615cbd"
+      },
+      {
+        "name": "dim_risk_category",
+        "columns": [
+          {
+            "name": "risk_key",
+            "dataType": "int64",
+            "sourceColumn": "risk_key",
+            "summarizeBy": "none",
+            "lineageTag": "242cff76-6fb0-554e-b25c-4c94ef1e5864",
+            "isHidden": true
+          },
+          {
+            "name": "risk_category",
+            "dataType": "string",
+            "sourceColumn": "risk_category",
+            "summarizeBy": "none",
+            "lineageTag": "bafd5470-5bf2-5c44-ac40-31a6ffe0fc00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_risk_category",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\dim_risk_category.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"risk_key\", Int64.Type}, {\"risk_category\", type text}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "a02f6302-7f94-5318-b687-9b6ecad3427b"
+      },
+      {
+        "name": "fact_screening_alerts",
+        "columns": [
+          {
+            "name": "alert_id",
+            "dataType": "string",
+            "sourceColumn": "alert_id",
+            "summarizeBy": "none",
+            "lineageTag": "51efb485-36e2-54f1-a9d8-eca46e24b890"
+          },
+          {
+            "name": "transaction_id",
+            "dataType": "string",
+            "sourceColumn": "transaction_id",
+            "summarizeBy": "none",
+            "lineageTag": "9089593a-d351-5ce1-ae44-2aee8412455b"
+          },
+          {
+            "name": "customer_id",
+            "dataType": "int64",
+            "sourceColumn": "customer_id",
+            "summarizeBy": "none",
+            "lineageTag": "20c48b9e-c2f2-5a36-8b4c-e4f701a04fed"
+          },
+          {
+            "name": "counterparty_id",
+            "dataType": "int64",
+            "sourceColumn": "counterparty_id",
+            "summarizeBy": "none",
+            "lineageTag": "e2c328d2-d1d1-5295-82b3-071374547951"
+          },
+          {
+            "name": "alert_type",
+            "dataType": "string",
+            "sourceColumn": "alert_type",
+            "summarizeBy": "none",
+            "lineageTag": "418cd3b3-4beb-5922-85ee-ee3b18748953"
+          },
+          {
+            "name": "risk_score",
+            "dataType": "int64",
+            "sourceColumn": "risk_score",
+            "summarizeBy": "none",
+            "lineageTag": "3caab7b9-86a2-532c-a045-c69a0019d53a"
+          },
+          {
+            "name": "rules_triggered",
+            "dataType": "string",
+            "sourceColumn": "rules_triggered",
+            "summarizeBy": "none",
+            "lineageTag": "b3b51a20-ea7f-5245-ba04-337c8f38189b"
+          },
+          {
+            "name": "model_version",
+            "dataType": "string",
+            "sourceColumn": "model_version",
+            "summarizeBy": "none",
+            "lineageTag": "e28dde2e-70a1-50a1-a35d-e7b998fba34a"
+          },
+          {
+            "name": "screening_version",
+            "dataType": "string",
+            "sourceColumn": "screening_version",
+            "summarizeBy": "none",
+            "lineageTag": "aaaf0b6b-8c84-59af-b4e9-9e9a8723caa5"
+          },
+          {
+            "name": "created_at",
+            "dataType": "dateTime",
+            "sourceColumn": "created_at",
+            "summarizeBy": "none",
+            "lineageTag": "717ddc58-ce83-5964-a6f6-c42ec88a6c77"
+          },
+          {
+            "name": "status",
+            "dataType": "string",
+            "sourceColumn": "status",
+            "summarizeBy": "none",
+            "lineageTag": "b5ddf466-d9f2-5f0b-9cea-a272946f472a"
+          },
+          {
+            "name": "investigator_notes",
+            "dataType": "string",
+            "sourceColumn": "investigator_notes",
+            "summarizeBy": "none",
+            "lineageTag": "76d7334b-07f3-5660-928b-d917f1dbc238"
+          },
+          {
+            "name": "disposition",
+            "dataType": "string",
+            "sourceColumn": "disposition",
+            "summarizeBy": "none",
+            "lineageTag": "1b8bdf46-004c-5eba-bd16-88573eb2d6ad"
+          },
+          {
+            "name": "reason_code",
+            "dataType": "string",
+            "sourceColumn": "reason_code",
+            "summarizeBy": "none",
+            "lineageTag": "c508a848-dc80-51cb-ab3c-b4e472c2aa5f"
+          },
+          {
+            "name": "reviewed_at",
+            "dataType": "dateTime",
+            "sourceColumn": "reviewed_at",
+            "summarizeBy": "none",
+            "lineageTag": "bfb4445f-248a-52a0-959e-d038177e2362"
+          },
+          {
+            "name": "customer_key",
+            "dataType": "int64",
+            "sourceColumn": "customer_key",
+            "summarizeBy": "none",
+            "lineageTag": "0b357fa8-83b7-51fa-810b-73c571568e57",
+            "isHidden": true
+          },
+          {
+            "name": "counterparty_key",
+            "dataType": "int64",
+            "sourceColumn": "counterparty_key",
+            "summarizeBy": "none",
+            "lineageTag": "ea3e8ff1-84f2-5488-adca-d30fe895b698",
+            "isHidden": true
+          },
+          {
+            "name": "date_key",
+            "dataType": "int64",
+            "sourceColumn": "date_key",
+            "summarizeBy": "none",
+            "lineageTag": "ca75cff4-e3a8-59d9-9b7d-154e223c4348",
+            "isHidden": true
+          },
+          {
+            "name": "origin_geography_key",
+            "dataType": "int64",
+            "sourceColumn": "origin_geography_key",
+            "summarizeBy": "none",
+            "lineageTag": "110e592f-352d-5e1f-bd6c-29dc11d6883e",
+            "isHidden": true
+          },
+          {
+            "name": "destination_geography_key",
+            "dataType": "int64",
+            "sourceColumn": "destination_geography_key",
+            "summarizeBy": "none",
+            "lineageTag": "bfc80689-7409-50e3-ba7f-cb19caac3797",
+            "isHidden": true
+          },
+          {
+            "name": "channel_key",
+            "dataType": "int64",
+            "sourceColumn": "channel_key",
+            "summarizeBy": "none",
+            "lineageTag": "b4687bfa-6e82-5656-928f-08de88e63f7f",
+            "isHidden": true
+          },
+          {
+            "name": "risk_key",
+            "dataType": "int64",
+            "sourceColumn": "risk_key",
+            "summarizeBy": "none",
+            "lineageTag": "950af0d0-a885-5710-9b15-f0c5c8f36d79",
+            "isHidden": true
+          },
+          {
+            "name": "age_at_data_cutoff_days",
+            "dataType": "double",
+            "sourceColumn": "age_at_data_cutoff_days",
+            "summarizeBy": "none",
+            "lineageTag": "65aa52cb-0c4b-5cb3-8a0e-d1a60a355c9b",
+            "formatString": "#,0.00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_screening_alerts",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\fact_screening_alerts.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"alert_id\", type text}, {\"transaction_id\", type text}, {\"customer_id\", Int64.Type}, {\"counterparty_id\", Int64.Type}, {\"alert_type\", type text}, {\"risk_score\", Int64.Type}, {\"rules_triggered\", type text}, {\"model_version\", type text}, {\"screening_version\", type text}, {\"created_at\", type datetime}, {\"status\", type text}, {\"investigator_notes\", type text}, {\"disposition\", type text}, {\"reason_code\", type text}, {\"reviewed_at\", type datetime}, {\"customer_key\", Int64.Type}, {\"counterparty_key\", Int64.Type}, {\"date_key\", Int64.Type}, {\"origin_geography_key\", Int64.Type}, {\"destination_geography_key\", Int64.Type}, {\"channel_key\", Int64.Type}, {\"risk_key\", Int64.Type}, {\"age_at_data_cutoff_days\", type number}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "138c4dfd-52b4-580d-a109-240116b80a92"
+      },
+      {
+        "name": "fact_transactions",
+        "columns": [
+          {
+            "name": "transaction_id",
+            "dataType": "string",
+            "sourceColumn": "transaction_id",
+            "summarizeBy": "none",
+            "lineageTag": "de22ef82-14a5-5a0c-a238-ee140fc26e69"
+          },
+          {
+            "name": "customer_key",
+            "dataType": "int64",
+            "sourceColumn": "customer_key",
+            "summarizeBy": "none",
+            "lineageTag": "275d9027-6e9d-58d2-90e7-af8b230d33ad",
+            "isHidden": true
+          },
+          {
+            "name": "counterparty_key",
+            "dataType": "int64",
+            "sourceColumn": "counterparty_key",
+            "summarizeBy": "none",
+            "lineageTag": "652d6218-e09f-5476-a8a8-ed3d330b564c",
+            "isHidden": true
+          },
+          {
+            "name": "date_key",
+            "dataType": "int64",
+            "sourceColumn": "date_key",
+            "summarizeBy": "none",
+            "lineageTag": "a5da7a80-1976-576e-ac28-1977a3f420d0",
+            "isHidden": true
+          },
+          {
+            "name": "origin_geography_key",
+            "dataType": "int64",
+            "sourceColumn": "origin_geography_key",
+            "summarizeBy": "none",
+            "lineageTag": "af313c70-dc24-5c9f-9be8-7d0a39818456",
+            "isHidden": true
+          },
+          {
+            "name": "destination_geography_key",
+            "dataType": "int64",
+            "sourceColumn": "destination_geography_key",
+            "summarizeBy": "none",
+            "lineageTag": "f8c4b9d6-dd3c-5acf-a683-508b91dc0287",
+            "isHidden": true
+          },
+          {
+            "name": "channel_key",
+            "dataType": "int64",
+            "sourceColumn": "channel_key",
+            "summarizeBy": "none",
+            "lineageTag": "7fa73884-9788-5a38-9454-455becac84e5",
+            "isHidden": true
+          },
+          {
+            "name": "risk_key",
+            "dataType": "int64",
+            "sourceColumn": "risk_key",
+            "summarizeBy": "none",
+            "lineageTag": "3c54628b-161d-5d24-bedc-71a02f40b2fc",
+            "isHidden": true
+          },
+          {
+            "name": "timestamp",
+            "dataType": "dateTime",
+            "sourceColumn": "timestamp",
+            "summarizeBy": "none",
+            "lineageTag": "b6f691f2-3ea0-58e5-863b-742c72f28b6b"
+          },
+          {
+            "name": "amount",
+            "dataType": "double",
+            "sourceColumn": "amount",
+            "summarizeBy": "none",
+            "lineageTag": "c01ffe0f-e4f8-509c-b773-90b27f96cd6d",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "currency",
+            "dataType": "string",
+            "sourceColumn": "currency",
+            "summarizeBy": "none",
+            "lineageTag": "7cfcb4d7-a838-52fa-a4fa-11588c6cbe28"
+          },
+          {
+            "name": "payment_type",
+            "dataType": "string",
+            "sourceColumn": "payment_type",
+            "summarizeBy": "none",
+            "lineageTag": "12d8ff8b-8151-5ab9-8b40-69cfecfe4858"
+          },
+          {
+            "name": "payment_category",
+            "dataType": "string",
+            "sourceColumn": "payment_category",
+            "summarizeBy": "none",
+            "lineageTag": "0c4634df-ca3d-513e-b8c4-694febb52275"
+          },
+          {
+            "name": "originating_bank",
+            "dataType": "string",
+            "sourceColumn": "originating_bank",
+            "summarizeBy": "none",
+            "lineageTag": "38115a49-6fdf-59ed-9050-b769a2f55c1c"
+          },
+          {
+            "name": "network",
+            "dataType": "string",
+            "sourceColumn": "network",
+            "summarizeBy": "none",
+            "lineageTag": "091e0c0c-e3d0-57d8-8c5e-4086c782fb3e"
+          },
+          {
+            "name": "beneficiary_bank",
+            "dataType": "string",
+            "sourceColumn": "beneficiary_bank",
+            "summarizeBy": "none",
+            "lineageTag": "ddee70e1-4ff2-5637-90a1-c51370979af8"
+          },
+          {
+            "name": "status",
+            "dataType": "string",
+            "sourceColumn": "status",
+            "summarizeBy": "none",
+            "lineageTag": "b0bd75ee-828a-5d18-8e6f-97ab65839fc9"
+          },
+          {
+            "name": "risk_score",
+            "dataType": "int64",
+            "sourceColumn": "risk_score",
+            "summarizeBy": "none",
+            "lineageTag": "1c489ff4-3943-57c7-aa1b-453593b6e2ec"
+          },
+          {
+            "name": "model_probability",
+            "dataType": "double",
+            "sourceColumn": "model_probability",
+            "summarizeBy": "none",
+            "lineageTag": "a667a750-37a9-5839-b47f-790d5da5fd1a",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "screening_score",
+            "dataType": "double",
+            "sourceColumn": "screening_score",
+            "summarizeBy": "none",
+            "lineageTag": "ea8bd11d-9b0c-594d-9fc0-eb303b3a687e",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "alert_flag",
+            "dataType": "int64",
+            "sourceColumn": "alert_flag",
+            "summarizeBy": "none",
+            "lineageTag": "220f05d6-2c18-57b9-9ba7-0f81993121f8"
+          },
+          {
+            "name": "rule_reasons",
+            "dataType": "string",
+            "sourceColumn": "rule_reasons",
+            "summarizeBy": "none",
+            "lineageTag": "6bd65241-9279-5dac-84ca-761802d3cca8"
+          },
+          {
+            "name": "investigation_label",
+            "dataType": "int64",
+            "sourceColumn": "investigation_label",
+            "summarizeBy": "none",
+            "lineageTag": "5cdd5556-f588-5c73-84fa-662af8fbadcf"
+          },
+          {
+            "name": "screening_truth",
+            "dataType": "int64",
+            "sourceColumn": "screening_truth",
+            "summarizeBy": "none",
+            "lineageTag": "8e1586ec-b11f-56d9-a5e5-dfc30c864ad7"
+          },
+          {
+            "name": "velocity_1h",
+            "dataType": "int64",
+            "sourceColumn": "velocity_1h",
+            "summarizeBy": "none",
+            "lineageTag": "08d91e9d-ea11-59a2-bfb3-d3d25ee80798"
+          },
+          {
+            "name": "amount_ratio",
+            "dataType": "double",
+            "sourceColumn": "amount_ratio",
+            "summarizeBy": "none",
+            "lineageTag": "2bbcd947-3671-5228-a9aa-7ed2a61b3cea",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "night",
+            "dataType": "int64",
+            "sourceColumn": "night",
+            "summarizeBy": "none",
+            "lineageTag": "da0d4b64-fb30-5434-8e3f-ca4d2dc96c41"
+          },
+          {
+            "name": "new_counterparty",
+            "dataType": "int64",
+            "sourceColumn": "new_counterparty",
+            "summarizeBy": "none",
+            "lineageTag": "37965b7d-ac92-5cdc-9406-863a4f784e7d"
+          },
+          {
+            "name": "recommendation",
+            "dataType": "string",
+            "sourceColumn": "recommendation",
+            "summarizeBy": "none",
+            "lineageTag": "26eee855-8529-5b52-92d8-6da0d52a03c9"
+          },
+          {
+            "name": "hour_utc",
+            "dataType": "int64",
+            "sourceColumn": "hour_utc",
+            "summarizeBy": "none",
+            "lineageTag": "d5658e54-37e5-504c-ac64-d3f42ef4d865"
+          },
+          {
+            "name": "screening_review",
+            "dataType": "int64",
+            "sourceColumn": "screening_review",
+            "summarizeBy": "none",
+            "lineageTag": "9e4d2628-f579-503c-923c-6963d0e90815"
+          },
+          {
+            "name": "screening_score_band",
+            "dataType": "int64",
+            "sourceColumn": "screening_score_band",
+            "summarizeBy": "none",
+            "lineageTag": "42968c76-a0b8-59e2-8514-690f18b08e36"
+          },
+          {
+            "name": "amount_band",
+            "dataType": "string",
+            "sourceColumn": "amount_band",
+            "summarizeBy": "none",
+            "lineageTag": "94209d41-f72b-5cbe-8d79-ac59317548bd"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_transactions",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\fact_transactions.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"transaction_id\", type text}, {\"customer_key\", Int64.Type}, {\"counterparty_key\", Int64.Type}, {\"date_key\", Int64.Type}, {\"origin_geography_key\", Int64.Type}, {\"destination_geography_key\", Int64.Type}, {\"channel_key\", Int64.Type}, {\"risk_key\", Int64.Type}, {\"timestamp\", type datetime}, {\"amount\", type number}, {\"currency\", type text}, {\"payment_type\", type text}, {\"payment_category\", type text}, {\"originating_bank\", type text}, {\"network\", type text}, {\"beneficiary_bank\", type text}, {\"status\", type text}, {\"risk_score\", Int64.Type}, {\"model_probability\", type number}, {\"screening_score\", type number}, {\"alert_flag\", Int64.Type}, {\"rule_reasons\", type text}, {\"investigation_label\", Int64.Type}, {\"screening_truth\", Int64.Type}, {\"velocity_1h\", Int64.Type}, {\"amount_ratio\", type number}, {\"night\", Int64.Type}, {\"new_counterparty\", Int64.Type}, {\"recommendation\", type text}, {\"hour_utc\", Int64.Type}, {\"screening_review\", Int64.Type}, {\"screening_score_band\", Int64.Type}, {\"amount_band\", type text}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "47ada55b-8e36-55f8-9c73-fc8fe5ee02cb",
+        "measures": [
+          {
+            "name": "Transactions Screened",
+            "expression": "COUNTROWS(fact_transactions)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Review Alerts",
+            "expression": "COUNTROWS(fact_screening_alerts)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Alert Rate",
+            "expression": "DIVIDE([Review Alerts], [Transactions Screened])",
+            "formatString": "0.00%",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "High-Risk Alerts",
+            "expression": "CALCULATE([Review Alerts], fact_screening_alerts[risk_score] >= 70)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Average Risk Score",
+            "expression": "AVERAGE(fact_transactions[risk_score])",
+            "formatString": "0.00",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Total Amount GBP",
+            "expression": "SUM(fact_transactions[amount])",
+            "formatString": "£#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Average Amount GBP",
+            "expression": "AVERAGE(fact_transactions[amount])",
+            "formatString": "£#,0.00",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Average Velocity",
+            "expression": "AVERAGE(fact_transactions[velocity_1h])",
+            "formatString": "0.00",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Velocity Spike Payments",
+            "expression": "CALCULATE([Transactions Screened], fact_transactions[velocity_1h] >= 4)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Unusual-Time Payments",
+            "expression": "CALCULATE([Transactions Screened], fact_transactions[night] = 1)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Screening Alerts",
+            "expression": "CALCULATE([Transactions Screened], fact_transactions[screening_review] = 1)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Screening TP",
+            "expression": "CALCULATE([Transactions Screened], fact_transactions[screening_review] = 1, fact_transactions[screening_truth] = 1)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Screening FP",
+            "expression": "CALCULATE([Transactions Screened], fact_transactions[screening_review] = 1, fact_transactions[screening_truth] = 0)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Screening FN",
+            "expression": "CALCULATE([Transactions Screened], fact_transactions[screening_review] = 0, fact_transactions[screening_truth] = 1)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Screening TN",
+            "expression": "CALCULATE([Transactions Screened], fact_transactions[screening_review] = 0, fact_transactions[screening_truth] = 0)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Screening Precision",
+            "expression": "DIVIDE([Screening TP], [Screening TP] + [Screening FP])",
+            "formatString": "0.00%",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Screening Recall",
+            "expression": "DIVIDE([Screening TP], [Screening TP] + [Screening FN])",
+            "formatString": "0.00%",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Screening F1",
+            "expression": "DIVIDE(2 * [Screening Precision] * [Screening Recall], [Screening Precision] + [Screening Recall])",
+            "formatString": "0.00%",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Screening FPR",
+            "expression": "DIVIDE([Screening FP], [Screening FP] + [Screening TN])",
+            "formatString": "0.00%",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Screening FNR",
+            "expression": "DIVIDE([Screening FN], [Screening TP] + [Screening FN])",
+            "formatString": "0.00%",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Open Alerts",
+            "expression": "COALESCE(CALCULATE([Review Alerts], fact_screening_alerts[status] = \"OPEN\"), 0)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "In Review Alerts",
+            "expression": "COALESCE(CALCULATE([Review Alerts], fact_screening_alerts[status] = \"IN_REVIEW\"), 0)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Escalated Alerts",
+            "expression": "COALESCE(CALCULATE([Review Alerts], fact_screening_alerts[status] = \"ESCALATED\"), 0)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Closed Alerts",
+            "expression": "COALESCE(CALCULATE([Review Alerts], fact_screening_alerts[status] = \"CLOSED\"), 0)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Reviewed False Positives",
+            "expression": "COALESCE(CALCULATE([Review Alerts], fact_screening_alerts[disposition] = \"FALSE_POSITIVE\"), 0)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Reviewed FP Share",
+            "expression": "DIVIDE([Reviewed False Positives], [Closed Alerts])",
+            "formatString": "0.00%",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Average Case Age at Cutoff",
+            "expression": "AVERAGE(fact_screening_alerts[age_at_data_cutoff_days])",
+            "formatString": "0.0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Rule Alerts",
+            "expression": "COUNTROWS(bridge_alert_rules)",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "XGBoost Threshold",
+            "expression": "CALCULATE(MAX(model_comparison[threshold]), model_comparison[model] = \"XGBoost\")",
+            "formatString": "0.00",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Test TP",
+            "expression": "CALCULATE(MAX(model_comparison[tp]), model_comparison[model] = \"XGBoost\")",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Test FP",
+            "expression": "CALCULATE(MAX(model_comparison[fp]), model_comparison[model] = \"XGBoost\")",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Test FN",
+            "expression": "CALCULATE(MAX(model_comparison[fn]), model_comparison[model] = \"XGBoost\")",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Test TN",
+            "expression": "CALCULATE(MAX(model_comparison[tn]), model_comparison[model] = \"XGBoost\")",
+            "formatString": "#,0",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Cramers V",
+            "expression": "MAX(statistical_findings[cramers_v])",
+            "formatString": "0.000",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Rank Biserial",
+            "expression": "MAX(statistical_findings[rank_biserial])",
+            "formatString": "0.000",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Spearman Rho",
+            "expression": "MAX(statistical_findings[spearman_rho])",
+            "formatString": "0.000",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Wilson Lower",
+            "expression": "MAX(statistical_findings[ci_lower])",
+            "formatString": "0.00%",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          },
+          {
+            "name": "Wilson Upper",
+            "expression": "MAX(statistical_findings[ci_upper])",
+            "formatString": "0.00%",
+            "displayFolder": "FinCrimeAI",
+            "description": "Synthetic simulation; human review remains final."
+          }
+        ]
+      },
+      {
+        "name": "feature_importance",
+        "columns": [
+          {
+            "name": "feature",
+            "dataType": "string",
+            "sourceColumn": "feature",
+            "summarizeBy": "none",
+            "lineageTag": "5387c2a6-9045-5754-9665-b2a3dbecbcb8"
+          },
+          {
+            "name": "importance",
+            "dataType": "double",
+            "sourceColumn": "importance",
+            "summarizeBy": "none",
+            "lineageTag": "c290e6e5-c3d0-5317-a0ab-37d923d484bc",
+            "formatString": "#,0.00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "feature_importance",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\feature_importance.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"feature\", type text}, {\"importance\", type number}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "f51d8fd0-c711-5f10-bed2-fb690b820489"
+      },
+      {
+        "name": "model_comparison",
+        "columns": [
+          {
+            "name": "model",
+            "dataType": "string",
+            "sourceColumn": "model",
+            "summarizeBy": "none",
+            "lineageTag": "4ff7f3d6-7103-57a3-8d15-a78c6a59e495"
+          },
+          {
+            "name": "threshold",
+            "dataType": "double",
+            "sourceColumn": "threshold",
+            "summarizeBy": "none",
+            "lineageTag": "372b919d-5874-57fc-8c79-52e588ae8e3c",
+            "formatString": "0.0000"
+          },
+          {
+            "name": "validation_cost",
+            "dataType": "int64",
+            "sourceColumn": "validation_cost",
+            "summarizeBy": "none",
+            "lineageTag": "c4064460-64d1-5947-8b81-48edef52a6b7"
+          },
+          {
+            "name": "cv_pr_auc_ap_mean",
+            "dataType": "double",
+            "sourceColumn": "cv_pr_auc_ap_mean",
+            "summarizeBy": "none",
+            "lineageTag": "fa666350-d10f-5dbc-9c88-ca51f1f23c01",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "cv_pr_auc_ap_std",
+            "dataType": "double",
+            "sourceColumn": "cv_pr_auc_ap_std",
+            "summarizeBy": "none",
+            "lineageTag": "db1f5afe-b74f-59fe-b315-08f2051e6b49",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "fit_evaluation_seconds",
+            "dataType": "double",
+            "sourceColumn": "fit_evaluation_seconds",
+            "summarizeBy": "none",
+            "lineageTag": "e4448987-d058-5060-819b-4e270cdfc3b0",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "precision",
+            "dataType": "double",
+            "sourceColumn": "precision",
+            "summarizeBy": "none",
+            "lineageTag": "831534ba-9e0f-5161-87f2-713aadf1a988",
+            "formatString": "0.0000"
+          },
+          {
+            "name": "recall",
+            "dataType": "double",
+            "sourceColumn": "recall",
+            "summarizeBy": "none",
+            "lineageTag": "015b0010-2fc3-5f1d-a47f-68f62273253d",
+            "formatString": "0.0000"
+          },
+          {
+            "name": "f1",
+            "dataType": "double",
+            "sourceColumn": "f1",
+            "summarizeBy": "none",
+            "lineageTag": "ca8adf0a-de9d-50d7-9201-5716a0997b87",
+            "formatString": "0.0000"
+          },
+          {
+            "name": "roc_auc",
+            "dataType": "double",
+            "sourceColumn": "roc_auc",
+            "summarizeBy": "none",
+            "lineageTag": "03a70711-c985-5e79-9daf-1d86afb28e24",
+            "formatString": "0.0000"
+          },
+          {
+            "name": "pr_auc_ap",
+            "dataType": "double",
+            "sourceColumn": "pr_auc_ap",
+            "summarizeBy": "none",
+            "lineageTag": "28b974cf-0d6b-5757-8157-337ec3788f6b",
+            "formatString": "0.0000"
+          },
+          {
+            "name": "tn",
+            "dataType": "int64",
+            "sourceColumn": "tn",
+            "summarizeBy": "none",
+            "lineageTag": "04e67ea7-78ad-54d8-8400-93cefc2bfd22"
+          },
+          {
+            "name": "fp",
+            "dataType": "int64",
+            "sourceColumn": "fp",
+            "summarizeBy": "none",
+            "lineageTag": "f0cbbfb2-b350-5387-95cd-f6dfbc87403b"
+          },
+          {
+            "name": "fn",
+            "dataType": "int64",
+            "sourceColumn": "fn",
+            "summarizeBy": "none",
+            "lineageTag": "39727e41-c13b-50f3-a416-b3e8f1a8f253"
+          },
+          {
+            "name": "tp",
+            "dataType": "int64",
+            "sourceColumn": "tp",
+            "summarizeBy": "none",
+            "lineageTag": "67c250fb-8152-5de0-bb31-4ca0e7820d53"
+          },
+          {
+            "name": "false_positive_rate",
+            "dataType": "double",
+            "sourceColumn": "false_positive_rate",
+            "summarizeBy": "none",
+            "lineageTag": "0c8ee551-d1c1-5ff9-b95c-89a02909922c",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "false_negative_rate",
+            "dataType": "double",
+            "sourceColumn": "false_negative_rate",
+            "summarizeBy": "none",
+            "lineageTag": "88d9fab4-ce6a-592b-aa37-bca202701cd7",
+            "formatString": "#,0.00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "model_comparison",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\model_comparison.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"model\", type text}, {\"threshold\", type number}, {\"validation_cost\", Int64.Type}, {\"cv_pr_auc_ap_mean\", type number}, {\"cv_pr_auc_ap_std\", type number}, {\"fit_evaluation_seconds\", type number}, {\"precision\", type number}, {\"recall\", type number}, {\"f1\", type number}, {\"roc_auc\", type number}, {\"pr_auc_ap\", type number}, {\"tn\", Int64.Type}, {\"fp\", Int64.Type}, {\"fn\", Int64.Type}, {\"tp\", Int64.Type}, {\"false_positive_rate\", type number}, {\"false_negative_rate\", type number}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "c47187d6-2559-5ba7-918e-d49b66d33e07"
+      },
+      {
+        "name": "statistical_findings",
+        "columns": [
+          {
+            "name": "chi_square",
+            "dataType": "double",
+            "sourceColumn": "chi_square",
+            "summarizeBy": "none",
+            "lineageTag": "abf13e35-b24a-570c-a663-9fa38bc35c6e",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "chi_p_value",
+            "dataType": "double",
+            "sourceColumn": "chi_p_value",
+            "summarizeBy": "none",
+            "lineageTag": "0291a458-2beb-535b-9491-a562f2397005",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "cramers_v",
+            "dataType": "double",
+            "sourceColumn": "cramers_v",
+            "summarizeBy": "none",
+            "lineageTag": "35f3c51d-63e4-55d7-affb-e44afe85a5de",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "mann_whitney_u",
+            "dataType": "double",
+            "sourceColumn": "mann_whitney_u",
+            "summarizeBy": "none",
+            "lineageTag": "24de54c1-26a1-587e-858c-efd8fca0719b",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "rank_biserial",
+            "dataType": "double",
+            "sourceColumn": "rank_biserial",
+            "summarizeBy": "none",
+            "lineageTag": "6a95b79f-9a42-5ec3-95a5-16e128c75cea",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "spearman_rho",
+            "dataType": "double",
+            "sourceColumn": "spearman_rho",
+            "summarizeBy": "none",
+            "lineageTag": "58eeb8d5-3efa-589c-b1de-ddb37bdb2677",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "ci_lower",
+            "dataType": "double",
+            "sourceColumn": "ci_lower",
+            "summarizeBy": "none",
+            "lineageTag": "a8fbc298-c69b-5135-92ec-5a308ba1a5c6",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "ci_upper",
+            "dataType": "double",
+            "sourceColumn": "ci_upper",
+            "summarizeBy": "none",
+            "lineageTag": "0b1b2477-9fb3-51b0-a177-2fb0eb479174",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "alerted_median",
+            "dataType": "double",
+            "sourceColumn": "alerted_median",
+            "summarizeBy": "none",
+            "lineageTag": "f0194f5d-1fd8-5227-a8b7-23c1e25abba4",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "nonalerted_median",
+            "dataType": "double",
+            "sourceColumn": "nonalerted_median",
+            "summarizeBy": "none",
+            "lineageTag": "0c06d0ee-1750-521c-b66f-dcca9bf8396c",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "interpretation",
+            "dataType": "string",
+            "sourceColumn": "interpretation",
+            "summarizeBy": "none",
+            "lineageTag": "2cffd35e-7979-5f0f-a819-6faa3c58809d"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "statistical_findings",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\statistical_findings.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"chi_square\", type number}, {\"chi_p_value\", type number}, {\"cramers_v\", type number}, {\"mann_whitney_u\", type number}, {\"rank_biserial\", type number}, {\"spearman_rho\", type number}, {\"ci_lower\", type number}, {\"ci_upper\", type number}, {\"alerted_median\", type number}, {\"nonalerted_median\", type number}, {\"interpretation\", type text}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "c9be8134-f53f-5102-a170-113993bfebfb"
+      },
+      {
+        "name": "threshold_analysis",
+        "columns": [
+          {
+            "name": "model",
+            "dataType": "string",
+            "sourceColumn": "model",
+            "summarizeBy": "none",
+            "lineageTag": "d9eae3f5-b4c8-538c-b7c8-b7335f98cdf2"
+          },
+          {
+            "name": "threshold",
+            "dataType": "double",
+            "sourceColumn": "threshold",
+            "summarizeBy": "none",
+            "lineageTag": "e21a5b60-800e-5813-9a35-a994981e58d9",
+            "formatString": "0.0000"
+          },
+          {
+            "name": "validation_cost_5fn_plus_fp",
+            "dataType": "int64",
+            "sourceColumn": "validation_cost_5fn_plus_fp",
+            "summarizeBy": "none",
+            "lineageTag": "83697f88-a6c5-5619-a977-8ec1928ebd91"
+          },
+          {
+            "name": "precision",
+            "dataType": "double",
+            "sourceColumn": "precision",
+            "summarizeBy": "none",
+            "lineageTag": "e87e7045-8749-518d-bae2-add34a4cdb14",
+            "formatString": "0.0000"
+          },
+          {
+            "name": "recall",
+            "dataType": "double",
+            "sourceColumn": "recall",
+            "summarizeBy": "none",
+            "lineageTag": "f04dff3f-4f19-5584-add4-be3610f52240",
+            "formatString": "0.0000"
+          },
+          {
+            "name": "f1",
+            "dataType": "double",
+            "sourceColumn": "f1",
+            "summarizeBy": "none",
+            "lineageTag": "e59415d6-dc2d-5f66-a069-c5d6a37ab608",
+            "formatString": "0.0000"
+          },
+          {
+            "name": "roc_auc",
+            "dataType": "double",
+            "sourceColumn": "roc_auc",
+            "summarizeBy": "none",
+            "lineageTag": "1140120f-524b-50fc-a7b3-ebb01903ad1c",
+            "formatString": "0.0000"
+          },
+          {
+            "name": "pr_auc_ap",
+            "dataType": "double",
+            "sourceColumn": "pr_auc_ap",
+            "summarizeBy": "none",
+            "lineageTag": "a2864434-9ac9-5c9a-b945-8c44db69082a",
+            "formatString": "0.0000"
+          },
+          {
+            "name": "tn",
+            "dataType": "int64",
+            "sourceColumn": "tn",
+            "summarizeBy": "none",
+            "lineageTag": "7e9ae26f-f37c-50fa-9c91-a194ba3f3f29"
+          },
+          {
+            "name": "fp",
+            "dataType": "int64",
+            "sourceColumn": "fp",
+            "summarizeBy": "none",
+            "lineageTag": "a9b37b50-abed-5d2e-a5a7-af9196fe8c4f"
+          },
+          {
+            "name": "fn",
+            "dataType": "int64",
+            "sourceColumn": "fn",
+            "summarizeBy": "none",
+            "lineageTag": "fd6bc532-9dff-5686-a109-5a29c9802ae3"
+          },
+          {
+            "name": "tp",
+            "dataType": "int64",
+            "sourceColumn": "tp",
+            "summarizeBy": "none",
+            "lineageTag": "e61d44fc-cafd-5f79-aa78-1fd19c12cbcd"
+          },
+          {
+            "name": "false_positive_rate",
+            "dataType": "double",
+            "sourceColumn": "false_positive_rate",
+            "summarizeBy": "none",
+            "lineageTag": "501c9043-acea-5010-8f53-c6200cc96d36",
+            "formatString": "#,0.00"
+          },
+          {
+            "name": "false_negative_rate",
+            "dataType": "double",
+            "sourceColumn": "false_negative_rate",
+            "summarizeBy": "none",
+            "lineageTag": "cad1cf21-0ed0-5a48-8e5e-90eecb3f4eb2",
+            "formatString": "#,0.00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "threshold_analysis",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"\\threshold_analysis.csv\"),[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Types = Table.TransformColumnTypes(Headers, {{\"model\", type text}, {\"threshold\", type number}, {\"validation_cost_5fn_plus_fp\", Int64.Type}, {\"precision\", type number}, {\"recall\", type number}, {\"f1\", type number}, {\"roc_auc\", type number}, {\"pr_auc_ap\", type number}, {\"tn\", Int64.Type}, {\"fp\", Int64.Type}, {\"fn\", Int64.Type}, {\"tp\", Int64.Type}, {\"false_positive_rate\", type number}, {\"false_negative_rate\", type number}}, \"en-GB\")",
+                "in",
+                "    Types"
+              ]
+            }
+          }
+        ],
+        "lineageTag": "2f9b577b-5a58-5817-bb2e-9fcd174be6c1"
+      }
+    ],
+    "relationships": [
+      {
+        "name": "fact_transactions_customer_key",
+        "fromTable": "fact_transactions",
+        "fromColumn": "customer_key",
+        "fromCardinality": "many",
+        "toTable": "dim_customer",
+        "toColumn": "customer_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_transactions_counterparty_key",
+        "fromTable": "fact_transactions",
+        "fromColumn": "counterparty_key",
+        "fromCardinality": "many",
+        "toTable": "dim_counterparty",
+        "toColumn": "counterparty_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_transactions_date_key",
+        "fromTable": "fact_transactions",
+        "fromColumn": "date_key",
+        "fromCardinality": "many",
+        "toTable": "dim_date",
+        "toColumn": "date_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_transactions_origin_geography_key",
+        "fromTable": "fact_transactions",
+        "fromColumn": "origin_geography_key",
+        "fromCardinality": "many",
+        "toTable": "dim_origin_geography",
+        "toColumn": "geography_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_transactions_destination_geography_key",
+        "fromTable": "fact_transactions",
+        "fromColumn": "destination_geography_key",
+        "fromCardinality": "many",
+        "toTable": "dim_destination_geography",
+        "toColumn": "geography_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_transactions_channel_key",
+        "fromTable": "fact_transactions",
+        "fromColumn": "channel_key",
+        "fromCardinality": "many",
+        "toTable": "dim_payment_channel",
+        "toColumn": "channel_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_transactions_risk_key",
+        "fromTable": "fact_transactions",
+        "fromColumn": "risk_key",
+        "fromCardinality": "many",
+        "toTable": "dim_risk_category",
+        "toColumn": "risk_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_screening_alerts_customer_key",
+        "fromTable": "fact_screening_alerts",
+        "fromColumn": "customer_key",
+        "fromCardinality": "many",
+        "toTable": "dim_customer",
+        "toColumn": "customer_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_screening_alerts_counterparty_key",
+        "fromTable": "fact_screening_alerts",
+        "fromColumn": "counterparty_key",
+        "fromCardinality": "many",
+        "toTable": "dim_counterparty",
+        "toColumn": "counterparty_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_screening_alerts_date_key",
+        "fromTable": "fact_screening_alerts",
+        "fromColumn": "date_key",
+        "fromCardinality": "many",
+        "toTable": "dim_date",
+        "toColumn": "date_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_screening_alerts_origin_geography_key",
+        "fromTable": "fact_screening_alerts",
+        "fromColumn": "origin_geography_key",
+        "fromCardinality": "many",
+        "toTable": "dim_origin_geography",
+        "toColumn": "geography_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_screening_alerts_destination_geography_key",
+        "fromTable": "fact_screening_alerts",
+        "fromColumn": "destination_geography_key",
+        "fromCardinality": "many",
+        "toTable": "dim_destination_geography",
+        "toColumn": "geography_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_screening_alerts_channel_key",
+        "fromTable": "fact_screening_alerts",
+        "fromColumn": "channel_key",
+        "fromCardinality": "many",
+        "toTable": "dim_payment_channel",
+        "toColumn": "channel_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "fact_screening_alerts_risk_key",
+        "fromTable": "fact_screening_alerts",
+        "fromColumn": "risk_key",
+        "fromCardinality": "many",
+        "toTable": "dim_risk_category",
+        "toColumn": "risk_key",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "alert_rules",
+        "fromTable": "bridge_alert_rules",
+        "fromColumn": "alert_id",
+        "fromCardinality": "many",
+        "toTable": "fact_screening_alerts",
+        "toColumn": "alert_id",
+        "toCardinality": "one",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      }
+    ],
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"DataFolder\", \"bridge_alert_rules\", \"confusion_matrix\", \"dim_counterparty\", \"dim_customer\", \"dim_date\", \"dim_destination_geography\", \"dim_origin_geography\", \"dim_payment_channel\", \"dim_risk_category\", \"fact_screening_alerts\", \"fact_transactions\", \"feature_importance\", \"model_comparison\", \"statistical_findings\", \"threshold_analysis\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      }
+    ]
+  }
+}

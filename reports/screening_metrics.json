@@ -1,0 +1,28 @@
+{
+  "transaction_weighted": {
+    "precision": 0.924025100851636,
+    "recall": 1.0,
+    "f1": 0.9605125218404194,
+    "roc_auc": 1.0,
+    "pr_auc_ap": 1.0,
+    "tn": 91076,
+    "fp": 678,
+    "fn": 0,
+    "tp": 8246,
+    "false_positive_rate": 0.0073893236262179305,
+    "false_negative_rate": 0.0
+  },
+  "unique_entities": {
+    "precision": 0.9259259259259259,
+    "recall": 1.0,
+    "f1": 0.9615384615384616,
+    "roc_auc": 1.0,
+    "pr_auc_ap": 1.0,
+    "tn": 546,
+    "fp": 4,
+    "fn": 0,
+    "tp": 50,
+    "false_positive_rate": 0.007272727272727273,
+    "false_negative_rate": 0.0
+  }
+}

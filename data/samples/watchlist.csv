@@ -1,0 +1,21 @@
+entity_id,canonical_name,aliases,country,entity_type,sanctions_program,source,active
+0,Fictional Zorvex Amber Trading,Zorvex Amber Holdings,GB,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+1,Fictional Zorvex Birch Trading,Zorvex Birch Holdings,IN,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+2,Fictional Zorvex Cobalt Trading,Zorvex Cobalt Holdings,US,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+3,Fictional Zorvex Delta Trading,Zorvex Delta Holdings,DE,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+4,Fictional Zorvex Ember Trading,Zorvex Ember Holdings,SG,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+5,Fictional Zorvex Flint Trading,Zorvex Flint Holdings,XZ,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+6,Fictional Zorvex Garnet Trading,Zorvex Garnet Holdings,QZ,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+7,Fictional Zorvex Harbor Trading,Zorvex Harbor Holdings,GB,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+8,Fictional Zorvex Indigo Trading,Zorvex Indigo Holdings,IN,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+9,Fictional Zorvex Juniper Trading,Zorvex Juniper Holdings,US,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+10,Fictional Zorvex Kestrel Trading,Zorvex Kestrel Holdings,DE,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+11,Fictional Zorvex Linden Trading,Zorvex Linden Holdings,SG,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+12,Fictional Zorvex Marble Trading,Zorvex Marble Holdings,XZ,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+13,Fictional Zorvex Nimbus Trading,Zorvex Nimbus Holdings,QZ,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+14,Fictional Zorvex Opal Trading,Zorvex Opal Holdings,GB,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+15,Fictional Zorvex Pine Trading,Zorvex Pine Holdings,IN,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+16,Fictional Zorvex Quartz Trading,Zorvex Quartz Holdings,US,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+17,Fictional Zorvex Russet Trading,Zorvex Russet Holdings,DE,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+18,Fictional Zorvex Saffron Trading,Zorvex Saffron Holdings,SG,BUSINESS,SYNTHETIC-DEMO,GENERATED,True
+19,Fictional Zorvex Topaz Trading,Zorvex Topaz Holdings,XZ,BUSINESS,SYNTHETIC-DEMO,GENERATED,True

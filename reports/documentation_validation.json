@@ -1,0 +1,52 @@
+{
+  "mermaid_version": "11.12.0",
+  "validation": "Parsed and rendered SVG with Mermaid in local Chromium",
+  "diagrams": [
+    {
+      "file": "README.md",
+      "diagram": 1,
+      "parse_and_svg_render": "passed"
+    },
+    {
+      "file": "README.md",
+      "diagram": 2,
+      "parse_and_svg_render": "passed"
+    },
+    {
+      "file": "README.md",
+      "diagram": 3,
+      "parse_and_svg_render": "passed"
+    },
+    {
+      "file": "README.md",
+      "diagram": 4,
+      "parse_and_svg_render": "passed"
+    },
+    {
+      "file": "ARCHITECTURE.md",
+      "diagram": 1,
+      "parse_and_svg_render": "passed"
+    },
+    {
+      "file": "ARCHITECTURE.md",
+      "diagram": 2,
+      "parse_and_svg_render": "passed"
+    },
+    {
+      "file": "ARCHITECTURE.md",
+      "diagram": 3,
+      "parse_and_svg_render": "passed"
+    },
+    {
+      "file": "ARCHITECTURE.md",
+      "diagram": 4,
+      "parse_and_svg_render": "passed"
+    }
+  ],
+  "readme_preview": "Locally rendered for visual review; not a GitHub-hosted render",
+  "source_sha256": {
+    "README.md": "df1c29f7721ccd5585f1c6b860782a6bf82bba5635577c5ec89db35b513a53f5",
+    "ARCHITECTURE.md": "0ff4df7f2b7243e4dfba1deb3d74e630a1524489306fadbd1812922e10d5fb6b"
+  },
+  "source_hash_normalization": "UTF-8 text with LF line endings"
+}

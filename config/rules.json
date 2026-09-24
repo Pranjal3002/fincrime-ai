@@ -1,0 +1,16 @@
+{
+  "version": "synthetic-rules-1.0",
+  "screening_version": "synthetic-screen-1.0",
+  "screening_threshold": 88,
+  "risk_threshold": 40,
+  "high_risk_countries": ["XZ", "QZ"],
+  "rules": [
+    {"rule_id":"R01", "rule_name":"HIGH_AMOUNT_DEVIATION", "feature":"amount_ratio", "operator":"ge", "threshold":4, "severity":"HIGH", "score":30, "explanation":"Amount exceeds four times the synthetic expected baseline."},
+    {"rule_id":"R02", "rule_name":"HIGH_RISK_GEOGRAPHY", "feature":"high_risk_geo", "operator":"ge", "threshold":1, "severity":"MEDIUM", "score":20, "explanation":"Destination belongs to a fictional risk geography."},
+    {"rule_id":"R03", "rule_name":"UNUSUAL_TIME", "feature":"night", "operator":"ge", "threshold":1, "severity":"LOW", "score":10, "explanation":"Transfer occurs between 00:00 and 04:59 UTC."},
+    {"rule_id":"R04", "rule_name":"VELOCITY_SPIKE", "feature":"velocity_1h", "operator":"ge", "threshold":4, "severity":"HIGH", "score":30, "explanation":"At least four prior transfers in the preceding hour."},
+    {"rule_id":"R05", "rule_name":"NEW_COUNTERPARTY", "feature":"new_counterparty_high_value", "operator":"ge", "threshold":1, "severity":"MEDIUM", "score":20, "explanation":"First observed beneficiary and amount exceeds twice expected baseline."},
+    {"rule_id":"R06", "rule_name":"WATCHLIST_SIMILARITY", "feature":"screening_score", "operator":"ge", "threshold":88, "severity":"HIGH", "score":50, "explanation":"Synthetic reference similarity requires human review."},
+    {"rule_id":"R07", "rule_name":"REPEATED_THRESHOLD_ADJACENT", "feature":"adjacent_prior_24h", "operator":"ge", "threshold":2, "severity":"MEDIUM", "score":25, "explanation":"At least two prior threshold-adjacent transfers in 24 hours; fictional threshold."}
+  ]
+}

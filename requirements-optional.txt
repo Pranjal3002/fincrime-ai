@@ -1,0 +1,4 @@
+# Optional local transformation, compatible with the available Java 8 runtime.
+pyspark==3.5.5
+# Real local browser screenshots; browser installation is a separate step.
+playwright>=1.49,<2

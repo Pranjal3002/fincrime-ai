@@ -1,0 +1,3 @@
+Generated and validated 100,000 synthetic transactions
+Screening and point-in-time features complete; training three models
+{"records": 100000, "alerts": 21998, "selected_model": "XGBoost", "warehouse_tables": 8, "elapsed_seconds": 37.43}

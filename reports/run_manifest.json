@@ -1,0 +1,12 @@
+{
+  "seed": 42,
+  "records": 100000,
+  "run_key": "8a2a5257453f",
+  "cases_file": "cases-8a2a5257453f.sqlite",
+  "engine": "pandas",
+  "rules_version": "synthetic-rules-1.0",
+  "rules_sha256": "d89b68868598cc82192b2e467e2269e5550f6a6592379ff61325cd2161608b6a",
+  "data_sha256": "a0e94b0d197f159192554771aa3adac2be20cdee9540ee6b4089ca7d87b3aa34",
+  "watermark": "2026-03-31 23:56:08+00:00",
+  "incremental_strategy": "idempotent keyed case inserts; atomic full warehouse rebuild; watermark recorded, streaming not implemented"
+}

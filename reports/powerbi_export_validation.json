@@ -1,0 +1,90 @@
+{
+  "transactions": 100000,
+  "alerts": 21998,
+  "alert_rate": 0.21998,
+  "high_risk_alerts": 6470,
+  "average_risk_score": 18.27335,
+  "total_amount_gbp": 157994548.85,
+  "status_counts": {
+    "OPEN": 21998
+  },
+  "source_run_key": "8a2a5257453f",
+  "source_watermark": "2026-03-31 23:56:08+00:00",
+  "tables": {
+    "dim_counterparty": {
+      "rows": 600,
+      "columns": 16,
+      "sha256": "8d8e7f5652f2736f6c8d162c83405d8d61c2042f55b8084c6cccaae0a292663e"
+    },
+    "dim_customer": {
+      "rows": 2000,
+      "columns": 14,
+      "sha256": "2003e7589e95f650ebf4fe015bd69728ea1e70ed953c6f0afcf504a14d85f8c7"
+    },
+    "dim_date": {
+      "rows": 90,
+      "columns": 5,
+      "sha256": "4798a56940a1716d268ac2ea2774ce2e0fe51ce9ec6e1fdff39afc003b7b3273"
+    },
+    "dim_payment_channel": {
+      "rows": 4,
+      "columns": 2,
+      "sha256": "d4b55c6a6ec333ec01c328a2f7b0041ccf23a35142427284afec20c8aa7133f5"
+    },
+    "dim_risk_category": {
+      "rows": 3,
+      "columns": 2,
+      "sha256": "7568a34ba99e017df28195c06e5c64f136192541c92e63f7b1e0816a2f8329e2"
+    },
+    "dim_origin_geography": {
+      "rows": 7,
+      "columns": 3,
+      "sha256": "934f2ad6e5d3aeb863a105b0db62b6a7950edf3b433afc88f46d8c964dadef52"
+    },
+    "dim_destination_geography": {
+      "rows": 7,
+      "columns": 3,
+      "sha256": "934f2ad6e5d3aeb863a105b0db62b6a7950edf3b433afc88f46d8c964dadef52"
+    },
+    "fact_transactions": {
+      "rows": 100000,
+      "columns": 33,
+      "sha256": "9959c67249fc2d2e3423d9ad15be94fb6328080d7b58840bc3a3cd2ee5b9e92c"
+    },
+    "fact_screening_alerts": {
+      "rows": 21998,
+      "columns": 23,
+      "sha256": "df1f6772097bb0f97b19eac9ad7530350ea859772d38c22bbc3bb7c0f58c7ed5"
+    },
+    "bridge_alert_rules": {
+      "rows": 44913,
+      "columns": 2,
+      "sha256": "16177f7b87592dca3ad4ca38c2c581fe297f62e5c39723bf017e6778ce319ea2"
+    },
+    "model_comparison": {
+      "rows": 3,
+      "columns": 17,
+      "sha256": "b2ba96d3321a73da0bc2a47c9d80e5d502e7b8e4750feaf4b1f3c09852ec1d92"
+    },
+    "threshold_analysis": {
+      "rows": 51,
+      "columns": 14,
+      "sha256": "f7890a6e4a20864aa3123f7965ffb85131762c9f72435e69e1507e185d0a9c98"
+    },
+    "feature_importance": {
+      "rows": 18,
+      "columns": 2,
+      "sha256": "d20f1f9a4ccb38f458e05ed9e813d504bf63882a1ab21101e1db716068acbd7f"
+    },
+    "confusion_matrix": {
+      "rows": 12,
+      "columns": 5,
+      "sha256": "ec8cbd15b319eea1e6f85699489cb05786a80c26c7448e2e31bdf6d382b60459"
+    },
+    "statistical_findings": {
+      "rows": 1,
+      "columns": 11,
+      "sha256": "27fd7fac78bfb5fa4d3561f42e23ee300861eadddc6feef1e0c5e7ad53d11b29"
+    }
+  }
+}

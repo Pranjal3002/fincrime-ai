@@ -1,0 +1,14 @@
+{
+  "pages_rendered": [
+    "Executive Overview",
+    "Screening Analytics",
+    "Payment Risk",
+    "Model Performance",
+    "Statistical Analysis",
+    "Investigation Explorer"
+  ],
+  "remove_api_expected_count": 75046,
+  "remove_api_filter_passed": true,
+  "empty_filter_state_passed": true,
+  "case_state_mutated": false
+}

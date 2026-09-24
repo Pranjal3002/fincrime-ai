@@ -1,0 +1,35 @@
+{
+  "pytest": {
+    "command": "python -m pytest -q",
+    "exit_code": 0,
+    "output": ".............................                                            [100%]\n============================== warnings summary ===============================\n.venv\\Lib\\site-packages\\fastapi\\testclient.py:1\n  <repository>\\.venv\\Lib\\site-packages\\fastapi\\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n29 passed, 1 warning in 26.72s\n"
+  },
+  "ruff": {
+    "command": "python -m ruff check .",
+    "exit_code": 0,
+    "output": "All checks passed!\n"
+  },
+  "black": {
+    "command": "python -m black --check .",
+    "exit_code": 0,
+    "output": "All done! \\u2728 \\U0001f370 \\u2728\n37 files would be left unchanged.\n"
+  },
+  "api_smoke": {
+    "/health": 200,
+    "/alerts?limit=2": 200,
+    "/analytics/summary": 200,
+    "/model/metrics": 200,
+    "/openapi.json": 200,
+    "POST /score/transaction": 200,
+    "POST /screen/entity": 200,
+    "POST /investigation/summary": 200
+  },
+  "streamlit_health": 200,
+  "python_version": "3.11.9",
+  "pip_check": {
+    "command": "python -m pip check",
+    "exit_code": 0,
+    "output": "No broken requirements found.\n"
+  },
+  "validation_scope": "Local cleanup validation; pre-existing API/Streamlit smoke results retained from the recorded platform run."
+}

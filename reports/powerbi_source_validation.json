@@ -1,0 +1,9 @@
+{
+  "tables": 15,
+  "active_one_to_many_single_direction_relationships": 15,
+  "dax_measure_definitions": 38,
+  "experimental_page_definitions": 6,
+  "project_references_resolve": true,
+  "relationship_endpoints_resolve": true,
+  "scope": "Static source validation only. Does not execute DAX, verify Desktop refresh or render report pages."
+}

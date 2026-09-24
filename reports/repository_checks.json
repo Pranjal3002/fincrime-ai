@@ -1,0 +1,9 @@
+{
+  "git_visible_files": 224,
+  "file_bytes": 2147813,
+  "file_bytes_excludes_this_report": true,
+  "evidence_assets_checked": 13,
+  "secret_and_junk_findings": [],
+  "broken_local_markdown_links": [],
+  "scan_scope": "Git-visible text and BI source: heuristic secret/path/junk checks, JSON parsing, local Markdown file links and evidence hashes. Not a comprehensive security audit; anchors and external links are separate checks."
+}

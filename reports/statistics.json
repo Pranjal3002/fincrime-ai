@@ -1,0 +1,70 @@
+{
+  "amount_description": {
+    "count": 100000.0,
+    "mean": 1579.9454885,
+    "std": 2554.169035126782,
+    "min": 12.97,
+    "50%": 794.255,
+    "90%": 3377.2620000000006,
+    "99%": 9982.7416,
+    "max": 101466.09
+  },
+  "alert_rate": 0.21998,
+  "alert_rate_wilson_95": [
+    0.2174233422180456,
+    0.22255817145212525
+  ],
+  "risk_score_description": {
+    "count": 100000.0,
+    "mean": 18.27335,
+    "std": 23.219987542109376,
+    "min": 0.0,
+    "25%": 0.0,
+    "50%": 10.0,
+    "75%": 20.0,
+    "max": 100.0
+  },
+  "geography_counts": {
+    "SG": 15508,
+    "US": 15036,
+    "DE": 14880,
+    "GB": 14747,
+    "IN": 14049,
+    "XZ": 13271,
+    "QZ": 12509
+  },
+  "channel_counts": {
+    "WEB": 25072,
+    "BRANCH": 25011,
+    "MOBILE": 24963,
+    "API": 24954
+  },
+  "chi_square": {
+    "statistic": 1211.5421442395068,
+    "p_value": 1.8918171264799365e-265,
+    "min_expected_count": 5671.0844,
+    "cramers_v": 0.11007007514485972,
+    "table": {
+      "false": {
+        "0": 59888,
+        "1": 18114
+      },
+      "true": {
+        "0": 14332,
+        "1": 7666
+      }
+    }
+  },
+  "mann_whitney": {
+    "u": 1296335275.5,
+    "p_value": 0.0,
+    "rank_biserial": 0.510978896666866,
+    "alerted_median": 2224.15,
+    "nonalerted_median": 676.685
+  },
+  "spearman": {
+    "rho": 0.32921249390409024,
+    "p_value": 0.0
+  },
+  "interpretation": "Exploratory synthetic associations. Alerts directly use geography and amount, so association is partly designed into the system. Repeated customer payments violate independence; p-values and Wilson intervals are descriptive approximations, not population inference. Large samples can produce small p-values without large effects. Amount skew supports a rank test; it tests distributions, not necessarily medians."
+}

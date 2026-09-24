@@ -1,0 +1,15 @@
+[
+  {
+    "file": "powerbi_model.png",
+    "source": "Actual Power BI Desktop Model view of FinCrimeAI_Financial_Crime_Analytics",
+    "kind": "native Desktop screenshot, cropped only",
+    "crop_pixels": [
+      60,
+      230,
+      1175,
+      920
+    ],
+    "sha256": "d4fe6542dbc69b928f436f07c41f8abad18f82f62fca05367d1e30fb8d04b23c",
+    "scope": "Semantic-model structure only; report rendering and displayed totals not validated"
+  }
+]

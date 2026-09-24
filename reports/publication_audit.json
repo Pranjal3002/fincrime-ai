@@ -1,0 +1,15 @@
+{
+  "broken_local_markdown_anchors": [],
+  "source_rows": {
+    "customers": 2000,
+    "counterparties": 600,
+    "transactions": 100000,
+    "watchlist": 20
+  },
+  "warehouse_tables": 8,
+  "enforced_foreign_keys": 11,
+  "transactions": 100000,
+  "amount_gbp": 157994548.85,
+  "alerts": 21998,
+  "scope": "Read-only inspection of existing outputs; no core pipeline or model rebuild"
+}
