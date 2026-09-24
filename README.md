@@ -7,25 +7,36 @@
 
 Turn synthetic payments into explainable review alerts, measurable risk models and an auditable human investigation workflow.
 
-## Project at a Glance
-
-| Payments | Review alerts | Warehouse | Local tests | XGBoost PR-AUC | Screening F1 |
-|---:|---:|---|---:|---:|---:|
-| 100,000 synthetic | 21,998 | 8 tables · 11 enforced foreign keys | 29 passing | 0.7471 | 0.9605 |
-
-All performance results are based on controlled synthetic ground truth and are not representative of production financial-crime systems.
+**100,000 synthetic payments · 21,998 review alerts · 29 passing tests.** Synthetic benchmark results do not represent production financial-crime performance.
 
 **Streamlit — Executive Financial Crime Analytics**
 
 ![Streamlit executive dashboard showing synthetic payment and alert analytics](docs/images/01_executive_dashboard.png)
 
+## Project at a Glance
+
+| Metric | Verified result |
+|---|---:|
+| Synthetic payments | 100,000 |
+| Customers | 2,000 |
+| Counterparties | 600 |
+| Watchlist entities | 20 |
+| Review alerts | 21,998 |
+| Warehouse tables | 8 |
+| Enforced foreign keys | 11 |
+| Automated tests | 29 |
+| XGBoost PR-AUC | 0.7471 |
+| Screening F1 | 0.9605 |
+
+All model and screening metrics are based on controlled synthetic ground truth and are not representative of production financial-crime systems.
+
 [Evidence index](docs/EVIDENCE.md) · [Executive report](reports/EXECUTIVE_FINCRIME_ANALYTICS_REPORT.md) · [Model card](MODEL_CARD.md) · [Delivery status](FINAL_STATUS.md)
 
-## Overview
+## Why This Project Exists
 
 FinCrimeAI demonstrates the engineering and analytical decisions behind a local financial-crime review system: validated data, explainable screening, temporal model evaluation and traceable case transitions. Every customer, payment and watchlist entity is synthetic.
 
-## What This Project Demonstrates
+## Technology Stack
 
 | Area | Implemented capabilities |
 |---|---|
@@ -68,7 +79,7 @@ These stages are synthetic metadata; no bank or payment network is connected.
 
 100,000 GBP payments across 90 days, 2,000 customers, 600 counterparties and 20 fictional watchlist entities. Seed 42 produces normal activity and injected risk patterns with separate evaluation labels. [Small synthetic samples](data/samples/README.md) are included; full datasets and serialized models are regenerated locally.
 
-## Data Engineering Pipeline
+## Data Engineering & PySpark
 
 Generation → validation → screening → past-only features → rule/model scoring → cases → warehouse → analytical exports. Hashes, seed, versions and event-time watermark are recorded in the [run manifest](reports/run_manifest.json). Duplicate keys, invalid values and reconciliation errors fail validation.
 
@@ -98,7 +109,7 @@ The geography edge represents two foreign keys; [full schema](sql/schema/star.sq
 
 Entity normalization, exact/alias matching and fuzzy comparison produce match scores and reason codes against a fictional watchlist. [Screening rules](SCREENING_RULES.md) keep entity-screening results distinct from transaction-risk labels. A match means review, never a legal determination.
 
-## Transaction Risk Analytics
+## Payment Risk Analytics
 
 Rules cover unusual amounts, payment velocity, cross-border activity, fictional high-risk geographies and screening matches. Observable features feed risk scores and explanations. Evaluation-only synthetic labels are excluded from model inputs.
 
@@ -126,14 +137,12 @@ Rules emit human-readable reason codes. The selected XGBoost model supplies glob
 `OPEN → IN_REVIEW → ESCALATED / CLOSED` transitions require explicit human actions and write before/after audit records atomically. Closed cases cannot silently reopen. Summary assistance uses deterministic templates; no language model inference is claimed. See the [workflow diagram](ARCHITECTURE.md#investigation-workflow).
 
 ```mermaid
-stateDiagram-v2
-  [*] --> OPEN
-  OPEN --> IN_REVIEW: Human accepts
-  IN_REVIEW --> ESCALATED: Further review
-  ESCALATED --> IN_REVIEW: Resume
-  IN_REVIEW --> CLOSED: Disposition and reason
-  ESCALATED --> CLOSED: Disposition and reason
-  CLOSED --> [*]
+flowchart LR
+  A[Alert] --> B[Structured evidence]
+  B --> C[Explainable risk signals]
+  C --> D[Human review]
+  D --> E[Disposition and reason]
+  E --> F[Atomic audit trail]
 ```
 
 ## Streamlit Analytics
@@ -146,9 +155,18 @@ Six completed views: executive overview, screening analytics, payment risk, mode
 
 A native **Power BI Project (PBIP)** is included: **15 tables, 15 active one-to-many relationship definitions and 38 DAX measures**. Seven conformed dimensions filter both facts in one direction; an alert-to-rule bridge supports rule analysis. This BI model is distinct from the 8-table DuckDB warehouse.
 
+Static validation confirms relationship endpoints, cardinalities and project references. This excerpt shows the semantic layer's conformed-customer and rule-bridge pattern; the screenshot and model source show the wider model.
+
+```mermaid
+erDiagram
+  dim_customer ||--o{ fact_transactions : customer_key
+  dim_customer ||--o{ fact_screening_alerts : customer_key
+  fact_screening_alerts ||--o{ bridge_alert_rules : alert_id
+```
+
 ![Power BI semantic model with conformed dimensions](docs/images/powerbi_model.png)
 
-*Power BI — Financial Crime semantic model with conformed dimensions and active one-to-many relationships.*
+*Power BI — Financial Crime semantic model with active one-to-many relationships and conformed dimensions.*
 
 ```text
 dashboards/powerbi/
@@ -186,8 +204,8 @@ XGBoost was selected at threshold **0.45**. Test confusion matrix: **TP 2,762 ·
 | Precision | 0.9240 |
 | Recall | 1.0000 |
 | F1 | 0.9605 |
-| FPR | 0.0074 |
-| FNR | 0.0000 |
+| False Positive Rate | 0.0074 |
+| False Negative Rate | 0.0000 |
 
 <!-- SCREENING_RESULTS_END -->
 
@@ -213,11 +231,19 @@ XGBoost was selected at threshold **0.45**. Test confusion matrix: **TP 2,762 ·
 |---|---|
 | ![Confusion matrix](docs/images/05_confusion_matrix.png) | ![Feature importance](docs/images/06_feature_importance.png) |
 
-[Statistical analysis](docs/images/07_statistical_analysis.png) · [Human investigation](docs/images/08_alert_investigation.png)
+| Streamlit statistical analysis | Streamlit alert investigation |
+|---|---|
+| ![Statistical analysis](docs/images/07_statistical_analysis.png) | ![Human investigation](docs/images/08_alert_investigation.png) |
 
 ### Engineering
 
-[Warehouse schema](docs/images/12_warehouse_schema.png) · [FastAPI docs](docs/images/09_fastapi_docs.png) · [Pipeline transcript](docs/images/11_pipeline_run.png) · [Test transcript](docs/images/10_tests_passed.png)
+| FastAPI — actual Swagger UI | Tests — actual output transcript |
+|---|---|
+| ![FastAPI docs](docs/images/09_fastapi_docs.png) | ![Test transcript](docs/images/10_tests_passed.png) |
+
+| Pipeline — actual output transcript | DuckDB — actual schema introspection |
+|---|---|
+| ![Pipeline transcript](docs/images/11_pipeline_run.png) | ![Warehouse schema](docs/images/12_warehouse_schema.png) |
 
 ### Power BI
 
@@ -267,6 +293,8 @@ tests/                Automated behavior and integration checks
 ```
 
 Full generated datasets, fitted model binaries, caches and local case stores stay out of Git. The [MIT license](LICENSE) covers project code; dependencies retain their own licenses.
+
+**Technical review:** [Architecture](ARCHITECTURE.md) · [Data model](DATA_MODEL.md) · [Model card](MODEL_CARD.md) · [Statistics](STATISTICAL_ANALYSIS.md) · [Screening rules](SCREENING_RULES.md) · [Evidence](docs/EVIDENCE.md) · [Resume bullets](docs/RESUME_BULLETS.md) · [Power BI](dashboards/powerbi/README.md) · [Executive report](reports/EXECUTIVE_FINCRIME_ANALYTICS_REPORT.md) · [Compliance boundaries](COMPLIANCE_BOUNDARIES.md).
 
 ## Safety / Compliance Boundary
 

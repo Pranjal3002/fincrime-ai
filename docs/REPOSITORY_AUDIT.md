@@ -24,7 +24,7 @@ The existing core implementation was preserved. Cleanup focused on presentation,
 
 - [Local quality results](../reports/validation_results.json): pytest, Ruff, Black and dependency validation.
 - [Repository checks](../reports/repository_checks.json): Git-visible size/junk/secret-pattern scan, JSON parsing, local Markdown file links and screenshot hashes.
-- [Documentation checks](../reports/documentation_validation.json): eight Mermaid diagrams parsed and rendered to SVG; README visually reviewed locally.
+- [Documentation checks](../reports/documentation_validation.json): nine Mermaid diagrams parsed and rendered to SVG; README visually reviewed locally.
 - [Power BI source checks](../reports/powerbi_source_validation.json): project references and relationship endpoints resolve; counts checked against actual source. This does not validate report rendering or DAX execution.
 - [Read-only publication audit](../reports/publication_audit.json): source dataset counts, actual DuckDB totals/constraints and local Markdown anchors verified.
 - All 13 evidence images were visually reviewed. The original application/plot/transcript images retain their original hashes; the native Power BI capture has a separate manifest.

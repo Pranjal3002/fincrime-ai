@@ -31,8 +31,8 @@ def main():
         ("Precision", "precision"),
         ("Recall", "recall"),
         ("F1", "f1"),
-        ("FPR", "false_positive_rate"),
-        ("FNR", "false_negative_rate"),
+        ("False Positive Rate", "false_positive_rate"),
+        ("False Negative Rate", "false_negative_rate"),
     ):
         screen_rows.append(f"| {label} | {screening[key]:.4f} |")
     path = ROOT / "README.md"

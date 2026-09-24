@@ -23,6 +23,11 @@
       "parse_and_svg_render": "passed"
     },
     {
+      "file": "README.md",
+      "diagram": 5,
+      "parse_and_svg_render": "passed"
+    },
+    {
       "file": "ARCHITECTURE.md",
       "diagram": 1,
       "parse_and_svg_render": "passed"
@@ -45,7 +50,7 @@
   ],
   "readme_preview": "Locally rendered for visual review; not a GitHub-hosted render",
   "source_sha256": {
-    "README.md": "df1c29f7721ccd5585f1c6b860782a6bf82bba5635577c5ec89db35b513a53f5",
+    "README.md": "ddc14ab0db2b139e4d3588e1e0483ee981db0795a39feafa89592220ac132ea4",
     "ARCHITECTURE.md": "0ff4df7f2b7243e4dfba1deb3d74e630a1524489306fadbd1812922e10d5fb6b"
   },
   "source_hash_normalization": "UTF-8 text with LF line endings"
