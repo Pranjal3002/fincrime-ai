@@ -10,7 +10,7 @@
 
 ## Validation
 
-Run pytest, Ruff, Black, `python -m pip check` and the repository checker after installation. [Recorded local outputs](../reports/validation_results.json) are distinct from remote GitHub Actions, which has not yet run. Tests require neither Spark nor Desktop BI tools.
+Run pytest, Ruff, Black, `python -m pip check` and the repository checker after installation. [Recorded local outputs](../reports/validation_results.json) are distinct from [hosted GitHub Actions results](https://github.com/Pranjal3002/fincrime-ai/actions/workflows/ci.yml). Tests require neither Spark nor Desktop BI tools.
 
 ## Correctness note
 

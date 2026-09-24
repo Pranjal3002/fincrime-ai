@@ -29,8 +29,8 @@ The existing core implementation was preserved. Cleanup focused on presentation,
 - [Read-only publication audit](../reports/publication_audit.json): source dataset counts, actual DuckDB totals/constraints and local Markdown anchors verified.
 - All 13 evidence images were visually reviewed. The original application/plot/transcript images retain their original hashes; the native Power BI capture has a separate manifest.
 
-The secret scan is heuristic and is not a comprehensive security audit. Local file-link checks do not certify external websites. Hosted CI has not run. Power BI report rendering and completed PBIX validation remain incomplete; Tableau is specifications only.
+The secret scan is heuristic and is not a comprehensive security audit. Local file-link checks do not certify external websites. Hosted CI results are linked from the README and are separate from these local checks. Power BI report rendering and completed PBIX validation remain incomplete; Tableau is specifications only.
 
 ## Git preparation
 
-The repository had no commits and no remote at audit time. The requested initial commit contains source, documentation, small samples, metrics and genuine evidence. No remote creation, push, Power BI Service publishing or account login is part of this cleanup. See [publication preparation](GITHUB_PUBLICATION.md) for the suggested repository name and description.
+The repository had no commits and no remote at the initial cleanup audit. The initial commit preserved source, documentation, small samples, metrics and genuine evidence. GitHub publication was separately authorized afterward; see [publication details](GITHUB_PUBLICATION.md). No Power BI Service publishing is included.

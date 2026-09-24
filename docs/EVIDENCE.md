@@ -16,7 +16,7 @@ Every claim below refers to a locally executed synthetic project. See [delivery 
 | FastAPI | [API implementation](../api/main.py) | [Real Swagger UI](images/09_fastapi_docs.png), [local smoke validation](../reports/validation_results.json) |
 | Streamlit | [Six-view app](../dashboards/streamlit/app.py) | Actual application screenshots 01–04 and 07–08 below |
 | Power BI | [PBIP and semantic source](../dashboards/powerbi/), [detailed mapping](../dashboards/powerbi/POWERBI_EVIDENCE.md) | [Real Desktop model view](images/powerbi_model.png); report rendering incomplete |
-| Testing / quality | [Tests](../tests/), [GitHub Actions](../.github/workflows/ci.yml) | [Local output](../reports/validation_results.json), [test transcript image](images/10_tests_passed.png); remote CI not run |
+| Testing / quality | [Tests](../tests/), [GitHub Actions](../.github/workflows/ci.yml) | [Local output](../reports/validation_results.json), [test transcript image](images/10_tests_passed.png), [hosted CI results](https://github.com/Pranjal3002/fincrime-ai/actions/workflows/ci.yml) |
 | Executive communication | [Analytics report](../reports/EXECUTIVE_FINCRIME_ANALYTICS_REPORT.md) | [Presentation narrative](../reports/FINCRIME_EXECUTIVE_PRESENTATION.md); Markdown, not PDF/PPTX |
 | Repository hygiene | [Checker](../scripts/check_repository.py), [ignore rules](../.gitignore) | [Scan results](../reports/repository_checks.json); heuristic, not a security certification |
 

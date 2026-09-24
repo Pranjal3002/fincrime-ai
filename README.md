@@ -3,6 +3,7 @@
 **End-to-end synthetic financial crime screening and payment-risk analytics platform using Python, PySpark, XGBoost, DuckDB, FastAPI, Streamlit and Power BI semantic modeling.**
 
 ![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
+[![CI](https://github.com/Pranjal3002/fincrime-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/Pranjal3002/fincrime-ai/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Turn synthetic payments into explainable review alerts, measurable risk models and an auditable human investigation workflow.
@@ -215,7 +216,7 @@ XGBoost was selected at threshold **0.45**. Test confusion matrix: **TP 2,762 ·
 
 **29 local tests pass**, including temporal features, leakage controls, screening, warehouse constraints, API behavior and transactional case audit. Ruff, Black and dependency validation pass. [Validation output](reports/validation_results.json) records the commands and results.
 
-[GitHub Actions](.github/workflows/ci.yml) installs dependencies and runs Ruff, Black and pytest on Windows and Ubuntu. Remote CI has not yet run. Tests do not require Power BI, a Spark cluster, Microsoft login or external APIs.
+[GitHub Actions](.github/workflows/ci.yml) installs dependencies and runs Ruff, Black and pytest on Windows and Ubuntu. The [live CI results](https://github.com/Pranjal3002/fincrime-ai/actions/workflows/ci.yml) show hosted execution for each pushed revision. Tests do not require Power BI, a Spark cluster, Microsoft login or external APIs.
 
 ## Evidence Gallery
 

@@ -27,7 +27,7 @@ Transaction-weighted screening precision **0.924025101**, recall **1.0**, F1 **0
 - Tableau deliverables are specifications only; no native workbook or screenshot is claimed.
 - AWS is a conceptual architecture mapping; no cloud deployment occurred.
 - Investigation summaries are deterministic templates; no LLM inference occurred.
-- Remote GitHub CI has not run. Local checks do not imply a successful hosted workflow.
+- Hosted [GitHub Actions results](https://github.com/Pranjal3002/fincrime-ai/actions/workflows/ci.yml) are available for pushed revisions. Local checks and hosted results are recorded separately.
 - The local demo has no production authentication or compliance certification.
 
 ## Review and reproduction
